@@ -26,7 +26,7 @@ export const products: Product[] = [
     id: "revomaket",
     name: "RevoMaket",
     website: "https://revomaket.com/",
-    logo: "https://storage.revosso.com/logos/revomaket/revomaket-logo-white.png",
+    logo: 'https://storage.revosso.com/logos/revomaket/revomaket-logo.jpg',
     available: true,
   },
   {
