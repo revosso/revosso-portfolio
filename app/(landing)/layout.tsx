@@ -13,14 +13,12 @@ export default function LandingLayout({ children }: { children: React.ReactNode 
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       {children}
 
-       
         <script
           id="revocom-webchat"
           src="https://revocom-api-dev.revosso.com/widget.js"
           data-public-key="wc_live_afd020c8aed0184df93134db"
           defer>
         </script>
-    
     
     </ThemeProvider>
   )
