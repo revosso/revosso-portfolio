@@ -30,6 +30,13 @@ export const products: Product[] = [
     available: true,
   },
   {
+    id: "revocom",
+    name: "RevoCom",
+    website: "https://revokonek.com",
+    logo: "https://storage.revokonek.com/logos/logo-with-without-name.png",
+    available: true,
+  },
+  {
     id: "revofin",
     name: "Revofin",
     website: "https://revofin.app/",
@@ -44,13 +51,6 @@ export const products: Product[] = [
     available: false,
   },
   {
-    id: "revocom",
-    name: "RevoCom",
-    website: "https://revocom.revosso.com",
-    logo: "/images/products/revocom.svg",
-    available: false,
-  },
-  {
     id: "revoschool",
     name: "RevoSchool",
     website: "https://revoschool.revosso.com",
@@ -58,4 +58,3 @@ export const products: Product[] = [
     available: false,
   },
 ]
-
