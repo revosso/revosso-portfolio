@@ -8,6 +8,7 @@ export const landingFr = {
     approach: "Approche",
     services: "Services",
     industries: "Solutions",
+    careers: "Carrières",
     contact: "Contact",
   },
   productsMenu: {
@@ -193,6 +194,7 @@ export const landingFr = {
       infrastructure: "Infrastructure",
       ourApproach: "Notre Approche",
       industries: "Solutions",
+      careers: "Carrières",
       contact: "Contact",
       privacy: "Confidentialité",
       terms: "Conditions",
@@ -200,5 +202,82 @@ export const landingFr = {
       security: "Sécurité",
     },
     copyright: "Tous droits réservés.",
+  },
+  careers: {
+    hero: {
+      eyebrow: "Carrières",
+      title: "Construisez l’avenir avec Revosso",
+      subtitle:
+        "Rejoignez-nous pour concevoir des produits numériques, des plateformes logicielles et des solutions qui ont un impact réel.",
+      cta: "Découvrir les postes ouverts",
+    },
+    whyJoin: {
+      title: "Pourquoi rejoindre Revosso ?",
+      subtitle:
+        "Des occasions de travailler sur des produits, de contribuer à des projets technologiques et de grandir avec l’entreprise.",
+      items: [
+        {
+          title: "Travailler sur des produits numériques",
+          description:
+            "Contribuez à Revofin, Revomaket, Revokonek, Rechajem et aux logiciels sur mesure que nous concevons pour nos clients.",
+        },
+        {
+          title: "Contribuer à des projets technologiques",
+          description:
+            "Participez à un travail concret sur les produits, les plateformes et l’infrastructure — du marketing à l’ingénierie.",
+        },
+        {
+          title: "Collaborer avec une entreprise en croissance",
+          description:
+            "Rejoignez une équipe qui construit des produits et services numériques, et aidez Revosso à se faire connaître.",
+        },
+        {
+          title: "Développer vos compétences",
+          description:
+            "Apprenez en livrant un travail utile : stratégie, contenu, campagnes et les systèmes qui les soutiennent.",
+        },
+      ],
+    },
+    openPositions: {
+      title: "Postes ouverts",
+      viewDetails: "Voir le poste",
+      posted: "Publié le",
+      department: "Département",
+      employmentType: "Type de contrat",
+      workMode: "Mode de travail",
+      location: "Lieu",
+    },
+    empty: {
+      message:
+        "Nous n’avons pas de poste ouvert pour le moment, mais nous sommes toujours intéressés par les personnes talentueuses.",
+      applyCta: "Envoyer une candidature spontanée",
+    },
+    apply: {
+      viaUrl: "Postuler à ce poste",
+      viaEmail: "Postuler par e-mail",
+      unavailable: "Les candidatures ne sont pas encore ouvertes pour ce poste.",
+      opensInNewTab: "(s’ouvre dans un nouvel onglet)",
+    },
+    details: {
+      overview: "Présentation",
+      responsibilities: "Responsabilités",
+      requirements: "Profil recherché",
+      niceToHave: "Atouts",
+      compensation: "Rémunération",
+      benefits: "Avantages",
+      howToApply: "Comment postuler",
+      backToCareers: "Retour aux carrières",
+    },
+    notFound: {
+      title: "Poste introuvable",
+      message: "Cette offre n’est plus disponible ou le lien est incorrect.",
+      back: "Voir les postes ouverts",
+    },
+  },
+  homeCareers: {
+    title: "Construire avec Revosso",
+    subtitle:
+      "Rejoignez-nous pour concevoir des produits qui répondent à de vrais besoins pour les entreprises et les communautés.",
+    cta: "Voir les carrières",
   },
 } satisfies LandingLocaleMessages

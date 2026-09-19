@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import {
   ArrowRight,
   CheckCircle,
@@ -256,6 +257,28 @@ export function LandingSections({ copy, calendlyUrl, onOpenContact }: LandingSec
                 </p>
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 lg:py-32 bg-slate-50 dark:bg-slate-950" aria-labelledby="home-careers-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center space-y-6">
+          <h2 id="home-careers-heading" className={sectionTitle}>
+            {copy.homeCareers.title}
+          </h2>
+          <p className={`text-xl max-w-2xl mx-auto ${bodyText}`}>{copy.homeCareers.subtitle}</p>
+          <div className="pt-2">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className={outlineBtn}
+            >
+              <Link href="/careers">
+                {copy.homeCareers.cta}
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

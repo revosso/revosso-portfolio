@@ -5,6 +5,7 @@ export const landingEn = {
     approach: "Approach",
     services: "Services",
     industries: "Solutions",
+    careers: "Careers",
     contact: "Contact",
   },
   productsMenu: {
@@ -190,6 +191,7 @@ export const landingEn = {
       infrastructure: "Infrastructure",
       ourApproach: "Our Approach",
       industries: "Solutions",
+      careers: "Careers",
       contact: "Contact",
       privacy: "Privacy",
       terms: "Terms",
@@ -197,5 +199,79 @@ export const landingEn = {
       security: "Security",
     },
     copyright: "All rights reserved.",
+  },
+  careers: {
+    hero: {
+      eyebrow: "Careers",
+      title: "Build the Future with Revosso",
+      subtitle:
+        "Join us in building digital products, software platforms, and solutions that create meaningful impact.",
+      cta: "Explore Open Positions",
+    },
+    whyJoin: {
+      title: "Why Join Revosso?",
+      subtitle: "Opportunities to work on products, contribute to technology projects, and grow with the company.",
+      items: [
+        {
+          title: "Work on digital products",
+          description:
+            "Help build and grow Revofin, Revomaket, Revokonek, Rechajem, and custom software for the organizations we serve.",
+        },
+        {
+          title: "Contribute to technology projects",
+          description:
+            "Take part in real product, platform, and infrastructure work — from marketing and operations to engineering.",
+        },
+        {
+          title: "Collaborate with a growing company",
+          description: "Join a team that is building digital products and services, and shape how Revosso shows up in the market.",
+        },
+        {
+          title: "Develop professional skills",
+          description:
+            "Learn by shipping work that matters: strategy, content, campaigns, and the systems behind them.",
+        },
+      ],
+    },
+    openPositions: {
+      title: "Open Positions",
+      viewDetails: "View Position",
+      posted: "Posted",
+      department: "Department",
+      employmentType: "Employment type",
+      workMode: "Work mode",
+      location: "Location",
+    },
+    empty: {
+      message:
+        "We don't have any open positions right now, but we're always interested in meeting talented people.",
+      applyCta: "Send a general application",
+    },
+    apply: {
+      viaUrl: "Apply for this position",
+      viaEmail: "Apply by email",
+      unavailable: "Applications are not open for this position yet.",
+      opensInNewTab: "(opens in a new tab)",
+    },
+    details: {
+      overview: "Overview",
+      responsibilities: "Responsibilities",
+      requirements: "Requirements",
+      niceToHave: "Nice to have",
+      compensation: "Compensation",
+      benefits: "Benefits",
+      howToApply: "How to apply",
+      backToCareers: "Back to Careers",
+    },
+    notFound: {
+      title: "Position not found",
+      message: "This job listing is no longer available or the link is incorrect.",
+      back: "View open positions",
+    },
+  },
+  homeCareers: {
+    title: "Build with Revosso",
+    subtitle: "Join us as we build products that solve real problems for businesses and communities.",
+    cta: "View Careers",
   },
 }

@@ -36,17 +36,17 @@ export function LandingFooter({ copy, year }: LandingFooterProps) {
             <h3 className="text-lg font-semibold">{copy.footer.services}</h3>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li>
-                <Link href="#services" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                <Link href="/#services" className="hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
                   {copy.footer.links.customPlatforms}
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                <Link href="/#services" className="hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
                   {copy.footer.links.platformEngineering}
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                <Link href="/#services" className="hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
                   {copy.footer.links.infrastructure}
                 </Link>
               </li>
@@ -57,17 +57,22 @@ export function LandingFooter({ copy, year }: LandingFooterProps) {
             <h3 className="text-lg font-semibold">{copy.footer.company}</h3>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li>
-                <Link href="#approach" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                <Link href="/#approach" className="hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
                   {copy.footer.links.ourApproach}
                 </Link>
               </li>
               <li>
-                <Link href="#solutions" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                <Link href="/#solutions" className="hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
                   {copy.footer.links.industries}
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                <Link href="/careers" className="hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
+                  {copy.footer.links.careers}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#contact" className="hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">
                   {copy.footer.links.contact}
                 </Link>
               </li>

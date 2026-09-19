@@ -25,7 +25,7 @@ const LOCALE_LABELS: Record<LandingLocale, string> = {
 }
 
 const navLinkClass =
-  "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group"
+  "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
 
 const ghostNavClass =
   "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 gap-1.5 px-2 font-medium outline-none focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -61,10 +61,11 @@ export function LandingHeader({
   }, [productsOpen, isMenuOpen])
 
   const navLinks = [
-    { name: copy.nav.approach, href: "#approach" },
-    { name: copy.nav.services, href: "#services" },
-    { name: copy.nav.industries, href: "#solutions" },
-    { name: copy.nav.contact, href: "#contact" },
+    { name: copy.nav.approach, href: "/#approach" },
+    { name: copy.nav.services, href: "/#services" },
+    { name: copy.nav.industries, href: "/#solutions" },
+    { name: copy.nav.careers, href: "/careers" },
+    { name: copy.nav.contact, href: "/#contact" },
   ]
 
   return (
@@ -89,7 +90,7 @@ export function LandingHeader({
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-8">
             <DropdownMenu
               modal={false}
               onOpenChange={(isOpen) => {
