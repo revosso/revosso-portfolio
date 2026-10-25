@@ -1,21 +1,32 @@
 "use client"
 
-import type { RefObject } from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState, useTransition, type MouseEvent } from "react"
 import Link from "next/link"
-import { ArrowRight, ChevronDown, Code, Globe, Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { usePathname, useRouter } from "next/navigation"
+import * as Accordion from "@radix-ui/react-accordion"
+import * as Dialog from "@radix-ui/react-dialog"
+import { ArrowLeft, ArrowRight, ChevronDown, ChevronRight, Globe, Menu, X } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { DiscussProjectCtaButton } from "@/components/landing/discuss-project-cta-button"
-import { ProductsMegaMenuPanel } from "@/components/landing/products-mega-menu"
+import { BrandMark } from "@/components/landing/brand-mark"
 import { LandingThemeToggle } from "@/components/landing/landing-theme-toggle"
-import type { LandingLocale } from "@/lib/landing-locale"
+import {
+  ProductMenuCard,
+  ProductsMegaMenu,
+  type MegaMenuCopy,
+  type MenuProduct,
+  type MenuService,
+} from "@/components/landing/products-mega-menu"
+import { buttonVariants } from "@/components/landing/ui/button"
+import { CalendlyCta } from "@/components/landing/ui/calendly-cta"
+import { LANDING_LOCALES, persistLandingLocale, type LandingLocale } from "@/lib/landing-locale"
 import type { LandingLocaleMessages } from "@/lib/landing-translations/types"
+import { cn } from "@/lib/utils"
 
 const LOCALE_LABELS: Record<LandingLocale, string> = {
   en: "EN",
@@ -24,207 +35,367 @@ const LOCALE_LABELS: Record<LandingLocale, string> = {
   es: "ES",
 }
 
-const navLinkClass =
-  "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+/** Matches Tailwind `xl`; the full nav doesn't fit translated labels below it. */
+const DESKTOP_NAV_QUERY = "(min-width: 1280px)"
 
-const ghostNavClass =
-  "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400 gap-1.5 px-2 font-medium outline-none focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-
-type LandingHeaderProps = {
-  copy: LandingLocaleMessages
-  locale: LandingLocale
-  isScrolled: boolean
-  isMenuOpen: boolean
-  onMenuOpenChange: (open: boolean) => void
-  onLocaleChange: (locale: LandingLocale) => void
-  calendlyUrl: string
-  onOpenContact: () => void
-  productTriggerRef: RefObject<HTMLButtonElement | null>
+const LOCALE_NAMES: Record<LandingLocale, string> = {
+  en: "English",
+  fr: "Français",
+  "pt-BR": "Português",
+  es: "Español",
 }
 
-export function LandingHeader({
-  copy,
-  locale,
-  isScrolled,
-  isMenuOpen,
-  onMenuOpenChange,
-  onLocaleChange,
-  calendlyUrl,
-  onOpenContact,
-  productTriggerRef,
-}: LandingHeaderProps) {
-  const [productsOpen, setProductsOpen] = useState(false)
+type LandingHeaderProps = {
+  nav: LandingLocaleMessages["nav"]
+  a11y: LandingLocaleMessages["a11y"]
+  megaMenu: MegaMenuCopy
+  locale: LandingLocale
+  products: MenuProduct[]
+  services: MenuService[]
+}
+
+const desktopLinkClass =
+  "inline-flex min-h-11 items-center rounded-rv px-3 text-[15px] text-rv-muted transition-colors hover:text-rv-text aria-[current=page]:text-rv-text"
+
+export function LandingHeader({ nav, a11y, megaMenu, locale, products, services }: LandingHeaderProps) {
+  const pathname = usePathname()
+  const router = useRouter()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [ctaZoneVisible, setCtaZoneVisible] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [drawerView, setDrawerView] = useState<"main" | "products">("main")
+  const [isSwitchingLocale, startTransition] = useTransition()
+  const pendingAnchor = useRef<string | null>(null)
+  const drawerProductsRef = useRef<HTMLButtonElement>(null)
+  const sheetBackRef = useRef<HTMLButtonElement>(null)
+  const lastDrawerView = useRef(drawerView)
+
+  const before = [{ label: nav.services, href: "/#services" }]
+  const after = [
+    { label: nav.about, href: "/about" },
+    { label: nav.careers, href: "/careers" },
+    { label: nav.contact, href: "/#contact" },
+  ]
+  const isCurrent = (href: string) => (!href.startsWith("/#") && pathname === href ? "page" : undefined)
+  const productsActive = pathname === "/products" || pathname.startsWith("/products/")
+  const categories = [...new Set(products.map((p) => p.category))]
 
   useEffect(() => {
-    document.documentElement.classList.toggle("landing-overlay-open", productsOpen || isMenuOpen)
-    return () => document.documentElement.classList.remove("landing-overlay-open")
-  }, [productsOpen, isMenuOpen])
+    const onScroll = () => setIsScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
-  const navLinks = [
-    { name: copy.nav.approach, href: "/#approach" },
-    { name: copy.nav.services, href: "/#services" },
-    { name: copy.nav.industries, href: "/#solutions" },
-    { name: copy.nav.careers, href: "/careers" },
-    { name: copy.nav.contact, href: "/#contact" },
-  ]
+  useEffect(() => {
+    const desktop = window.matchMedia(DESKTOP_NAV_QUERY)
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setMenuOpen(false)
+    }
+    desktop.addEventListener("change", onChange)
+    return () => desktop.removeEventListener("change", onChange)
+  }, [])
+
+  // Sections marked `data-cta-zone` own a primary CTA; the header CTA steps down while they are visible.
+  useEffect(() => {
+    const zones = document.querySelectorAll("[data-cta-zone]")
+    if (zones.length === 0) {
+      setCtaZoneVisible(false)
+      return
+    }
+    const visible = new Set<Element>()
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visible.add(entry.target)
+        else visible.delete(entry.target)
+      }
+      setCtaZoneVisible(visible.size > 0)
+    })
+    zones.forEach((zone) => io.observe(zone))
+    return () => io.disconnect()
+  }, [pathname])
+
+  // Switching drawer views unmounts the focused control; keep focus on the matching control in the new view.
+  useEffect(() => {
+    if (lastDrawerView.current === drawerView) return
+    lastDrawerView.current = drawerView
+    if (!menuOpen) return
+    if (drawerView === "products") sheetBackRef.current?.focus()
+    else drawerProductsRef.current?.focus()
+  }, [drawerView, menuOpen])
+
+  const changeLocale = (next: string) => {
+    const nextLocale = next as LandingLocale
+    if (nextLocale === locale) return
+    persistLandingLocale(nextLocale)
+    startTransition(() => router.refresh())
+  }
+
+  const onDrawerOpenChange = (open: boolean) => {
+    setMenuOpen(open)
+    if (!open) setDrawerView("main")
+  }
+
+  // The drawer's scroll lock swallows in-page navigation, so same-page anchors scroll once it has closed.
+  const handleDrawerLinkClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === "/" && href.startsWith("/#")) {
+      e.preventDefault()
+      pendingAnchor.current = href.slice(1)
+    }
+    onDrawerOpenChange(false)
+  }
+
+  const scrollToPendingAnchor = () => {
+    const hash = pendingAnchor.current
+    if (!hash) return
+    pendingAnchor.current = null
+    requestAnimationFrame(() => {
+      document.querySelector(hash)?.scrollIntoView()
+      window.history.replaceState(null, "", hash)
+    })
+  }
+
+  const ctaVariant = isScrolled && !ctaZoneVisible ? "primary" : "outline"
+
+  const drawerLink = (href: string, label: string) => (
+    <Link
+      href={href}
+      aria-current={isCurrent(href)}
+      onClick={(e) => handleDrawerLinkClick(e, href)}
+      className="flex min-h-14 items-center text-lg font-medium"
+    >
+      {label}
+    </Link>
+  )
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/50 shadow-lg"
-          : "bg-transparent"
-      }`}
+      className={cn(
+        "sticky top-0 z-50 w-full border-b bg-rv-bg transition-colors duration-200",
+        isScrolled || menuOpen ? "border-rv-border" : "border-transparent",
+      )}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 lg:h-20 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition-opacity" />
-              <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg">
-                <Code className="h-6 w-6" />
-              </div>
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              REVOSSO
-            </span>
-          </Link>
+      <div className="rv-container flex h-16 items-center justify-between gap-4 lg:h-[72px]">
+        <Link href="/" aria-label={a11y.home} className="inline-flex min-h-11 items-center rounded-rv">
+          <BrandMark />
+        </Link>
 
-          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-8">
-            <DropdownMenu
-              modal={false}
-              onOpenChange={(isOpen) => {
-                setProductsOpen(isOpen)
-                if (!isOpen) productTriggerRef.current?.blur()
-              }}
-            >
-              <DropdownMenuTrigger asChild>
-                <Button ref={productTriggerRef} variant="ghost" size="sm" className={ghostNavClass}>
-                  <span>{copy.nav.products}</span>
-                  <ChevronDown className="h-3 w-3 opacity-70" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="start"
-                sideOffset={10}
-                collisionPadding={24}
-                className="w-[min(900px,calc(100dvw-3rem))] overflow-hidden rounded-xl border border-slate-200/80 dark:border-0 bg-white/95 dark:bg-slate-900/95 p-0 shadow-2xl backdrop-blur-xl"
-              >
-                <ProductsMegaMenuPanel copy={copy.productsMenu} />
-              </DropdownMenuContent>
-            </DropdownMenu>
-            {navLinks.map((item) => (
-              <Link key={item.href} href={item.href} className={navLinkClass}>
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300" />
-              </Link>
+        <nav aria-label={a11y.primaryNav} className="hidden xl:block">
+          <ul className="flex items-center gap-1">
+            {before.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className={desktopLinkClass}>
+                  {link.label}
+                </Link>
+              </li>
             ))}
-          </nav>
+            <li>
+              <ProductsMegaMenu
+                label={nav.products}
+                copy={megaMenu}
+                products={products}
+                services={services}
+                newTabLabel={a11y.opensInNewTab}
+                active={productsActive}
+              />
+            </li>
+            {after.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} aria-current={isCurrent(link.href)} className={desktopLinkClass}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-          <div className="hidden lg:flex items-center space-x-2">
-            <LandingThemeToggle />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className={ghostNavClass}>
-                  <Globe className="h-4 w-4" />
-                  <span className="text-sm font-medium">{LOCALE_LABELS[locale]}</span>
-                  <ChevronDown className="h-3 w-3 opacity-70" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="bg-white border-slate-200 dark:bg-slate-900 dark:border-slate-700 min-w-[90px]"
-              >
-                {(["en", "fr", "pt-BR", "es"] as const).map((l) => (
-                  <DropdownMenuItem
-                    key={l}
-                    onClick={() => onLocaleChange(l)}
-                    className={`cursor-pointer ${locale === l ? "text-blue-600 dark:text-blue-400 font-medium" : "text-slate-600 dark:text-slate-300"}`}
-                  >
-                    {LOCALE_LABELS[l]}
-                  </DropdownMenuItem>
+        <div className="hidden items-center gap-1 xl:flex">
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger
+              aria-label={a11y.changeLanguage}
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-rv px-3 text-sm text-rv-muted outline-none transition-colors hover:bg-rv-surface-2 hover:text-rv-text data-[state=open]:text-rv-text"
+            >
+              <Globe className="size-4" aria-hidden="true" strokeWidth={1.75} />
+              {LOCALE_LABELS[locale]}
+              <ChevronDown className="size-3 opacity-70" aria-hidden="true" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="rv-portal min-w-[7rem] border-rv-border bg-rv-surface text-rv-text">
+              <DropdownMenuRadioGroup value={locale} onValueChange={changeLocale}>
+                {LANDING_LOCALES.map((l) => (
+                  <DropdownMenuRadioItem key={l} value={l} lang={l} className="min-h-10 cursor-pointer">
+                    {LOCALE_NAMES[l]}
+                  </DropdownMenuRadioItem>
                 ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DiscussProjectCtaButton
-              calendlyUrl={calendlyUrl}
-              onOpenContact={onOpenContact}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              {copy.hero.primaryCta}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </DiscussProjectCtaButton>
-          </div>
-
-          <div className="lg:hidden flex items-center space-x-1">
-            <LandingThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onMenuOpenChange(!isMenuOpen)}
-              className="text-slate-600 dark:text-slate-300"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <LandingThemeToggle label={a11y.toggleTheme} />
+          <CalendlyCta
+            label={nav.cta}
+            section="header"
+            ctaId="book_call"
+            newTabLabel={a11y.opensInNewTab}
+            variant={ctaVariant}
+            size="sm"
+            className="ml-2"
+          />
         </div>
 
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
-            <nav className="container mx-auto px-4 py-6 space-y-4">
-              <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
-                <p className="text-xs text-slate-500 mb-3 uppercase tracking-wider font-medium">
-                  {copy.productsMenu.sectionLabel}
-                </p>
-                <ProductsMegaMenuPanel
-                  copy={copy.productsMenu}
-                  variant="mobile"
-                  onNavigate={() => onMenuOpenChange(false)}
-                />
-              </div>
-              {navLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`block py-2 ${navLinkClass}`}
-                  onClick={() => onMenuOpenChange(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
-                <p className="text-xs text-slate-500 mb-2 uppercase tracking-wider font-medium">Language</p>
-                <div className="flex gap-2">
-                  {(["en", "fr", "pt-BR", "es"] as const).map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => onLocaleChange(l)}
-                      className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
-                        locale === l
-                          ? "bg-blue-600 text-white"
-                          : "text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800"
-                      }`}
+        <Dialog.Root open={menuOpen} onOpenChange={onDrawerOpenChange}>
+          <Dialog.Trigger
+            aria-label={a11y.openMenu}
+            className="inline-flex size-11 items-center justify-center rounded-rv text-rv-text hover:bg-rv-surface-2 xl:hidden"
+          >
+            <Menu className="size-6" aria-hidden="true" strokeWidth={1.5} />
+          </Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/40 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:animate-none xl:hidden" />
+            <Dialog.Content
+              aria-describedby={undefined}
+              onCloseAutoFocus={scrollToPendingAnchor}
+              className="rv-portal fixed inset-y-0 right-0 z-[60] flex h-dvh w-full flex-col overflow-y-auto border-l border-rv-border bg-rv-bg px-4 pb-6 text-rv-text data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:animate-in data-[state=open]:slide-in-from-right motion-reduce:animate-none sm:max-w-md sm:px-6 xl:hidden"
+            >
+              {drawerView === "main" ? (
+                <>
+                  <div className="flex h-16 shrink-0 items-center justify-between">
+                    <Dialog.Title className="rv-eyebrow">{a11y.menuTitle}</Dialog.Title>
+                    <Dialog.Close
+                      aria-label={a11y.closeMenu}
+                      className="inline-flex size-11 items-center justify-center rounded-rv hover:bg-rv-surface-2"
                     >
-                      {LOCALE_LABELS[l]}
+                      <X className="size-6" aria-hidden="true" strokeWidth={1.5} />
+                    </Dialog.Close>
+                  </div>
+
+                  <nav aria-label={a11y.primaryNav} className="mt-2">
+                    <ul className="divide-y divide-rv-border border-y border-rv-border">
+                      {before.map((link) => (
+                        <li key={link.href}>{drawerLink(link.href, link.label)}</li>
+                      ))}
+                      <li>
+                        <button
+                          ref={drawerProductsRef}
+                          type="button"
+                          onClick={() => setDrawerView("products")}
+                          className="flex min-h-14 w-full items-center justify-between text-left text-lg font-medium"
+                        >
+                          {nav.products}
+                          <ChevronRight className="size-5" aria-hidden="true" strokeWidth={1.5} />
+                        </button>
+                      </li>
+                      {after.map((link) => (
+                        <li key={link.href}>{drawerLink(link.href, link.label)}</li>
+                      ))}
+                    </ul>
+                  </nav>
+
+                  <div className="mt-8 space-y-3">
+                    <p id="mobile-language-label" className="text-sm font-medium text-rv-muted">
+                      {a11y.language}
+                    </p>
+                    <div role="group" aria-labelledby="mobile-language-label" className="flex flex-wrap items-center gap-2">
+                      {LANDING_LOCALES.map((l) => (
+                        <button
+                          key={l}
+                          type="button"
+                          aria-pressed={locale === l}
+                          aria-label={LOCALE_NAMES[l]}
+                          lang={l}
+                          disabled={isSwitchingLocale}
+                          onClick={() => changeLocale(l)}
+                          className={cn(
+                            "inline-flex min-h-11 min-w-12 items-center justify-center rounded-rv border px-4 text-sm font-medium transition-colors",
+                            locale === l ? "border-rv-text text-rv-text" : "border-rv-border text-rv-muted hover:text-rv-text",
+                          )}
+                        >
+                          {LOCALE_LABELS[l]}
+                        </button>
+                      ))}
+                      <LandingThemeToggle label={a11y.toggleTheme} />
+                    </div>
+                  </div>
+
+                  <div className="mt-auto pt-8">
+                    <CalendlyCta
+                      label={nav.cta}
+                      section="mobile_menu"
+                      ctaId="book_call"
+                      newTabLabel={a11y.opensInNewTab}
+                      size="lg"
+                      className="w-full"
+                      onClick={() => onDrawerOpenChange(false)}
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex h-16 shrink-0 items-center justify-between">
+                    <button
+                      ref={sheetBackRef}
+                      type="button"
+                      onClick={() => setDrawerView("main")}
+                      className="-ml-2 inline-flex min-h-11 items-center gap-2 rounded-rv px-2 text-sm font-medium hover:bg-rv-surface-2"
+                    >
+                      <ArrowLeft className="size-4" aria-hidden="true" strokeWidth={1.75} />
+                      {megaMenu.back}
                     </button>
-                  ))}
-                </div>
-              </div>
-              <div className="pt-2">
-                <DiscussProjectCtaButton
-                  calendlyUrl={calendlyUrl}
-                  onOpenContact={onOpenContact}
-                  onBeforeAction={() => onMenuOpenChange(false)}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                >
-                  {copy.hero.primaryCta}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </DiscussProjectCtaButton>
-              </div>
-            </nav>
-          </div>
-        )}
+                    <Dialog.Close
+                      aria-label={a11y.closeMenu}
+                      className="inline-flex size-11 items-center justify-center rounded-rv hover:bg-rv-surface-2"
+                    >
+                      <X className="size-6" aria-hidden="true" strokeWidth={1.5} />
+                    </Dialog.Close>
+                  </div>
+                  <Dialog.Title className="rv-h2 mt-2">{nav.products}</Dialog.Title>
+
+                  <Accordion.Root type="single" collapsible className="mt-6 border-t border-rv-border" aria-label={megaMenu.categoriesLabel}>
+                    {categories.map((category) => (
+                      <Accordion.Item key={category} value={category} className="border-b border-rv-border">
+                        <Accordion.Header>
+                          <Accordion.Trigger className="group flex min-h-14 w-full items-center justify-between text-left text-base font-medium">
+                            {megaMenu.categories[category]}
+                            <ChevronDown
+                              aria-hidden="true"
+                              strokeWidth={1.5}
+                              className="size-5 transition-transform duration-150 group-data-[state=open]:rotate-180 motion-reduce:transition-none"
+                            />
+                          </Accordion.Trigger>
+                        </Accordion.Header>
+                        <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down motion-reduce:animate-none">
+                          <ul className="space-y-3 pb-4">
+                            {products
+                              .filter((p) => p.category === category)
+                              .map((product) => (
+                                <li key={product.slug}>
+                                  <ProductMenuCard
+                                    product={product}
+                                    copy={megaMenu}
+                                    newTabLabel={a11y.opensInNewTab}
+                                    onNavigate={() => onDrawerOpenChange(false)}
+                                  />
+                                </li>
+                              ))}
+                          </ul>
+                        </Accordion.Content>
+                      </Accordion.Item>
+                    ))}
+                  </Accordion.Root>
+
+                  <div className="mt-auto pt-8">
+                    <Link
+                      href="/products"
+                      onClick={() => onDrawerOpenChange(false)}
+                      className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full")}
+                    >
+                      {megaMenu.exploreAll}
+                      <ArrowRight aria-hidden="true" strokeWidth={1.75} />
+                    </Link>
+                  </div>
+                </>
+              )}
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </div>
     </header>
   )
