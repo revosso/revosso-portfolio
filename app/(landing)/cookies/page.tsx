@@ -316,7 +316,7 @@ export default function CookiesPage() {
                   </thead>
                   <tbody className="divide-y divide-slate-700/50">
                     <tr>
-                      <td className="p-4 font-mono text-blue-300">revosso-session</td>
+                      <td className="p-4 font-medium text-blue-300">revosso-session</td>
                       <td className="p-4">{t.cookieSessionPurpose}</td>
                       <td className="p-4">{t.cookieSessionDuration}</td>
                     </tr>
@@ -339,7 +339,7 @@ export default function CookiesPage() {
                     <tr>
                       <td className="p-4">{t.analyticsServiceName}</td>
                       <td className="p-4">{t.analyticsServicePurpose}</td>
-                      <td className="p-4 text-slate-400 text-xs italic">—</td>
+                      <td className="p-4 text-slate-400 text-xs">—</td>
                     </tr>
                   </tbody>
                 </table>

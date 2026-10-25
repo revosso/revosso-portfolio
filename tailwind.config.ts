@@ -53,11 +53,30 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        rv: {
+          bg: "rgb(var(--rv-bg) / <alpha-value>)",
+          surface: "rgb(var(--rv-surface) / <alpha-value>)",
+          "surface-2": "rgb(var(--rv-surface-2) / <alpha-value>)",
+          border: "rgb(var(--rv-border) / <alpha-value>)",
+          text: "rgb(var(--rv-text) / <alpha-value>)",
+          muted: "rgb(var(--rv-muted) / <alpha-value>)",
+          accent: "rgb(var(--rv-accent) / <alpha-value>)",
+          "accent-fill": "rgb(var(--rv-accent-fill) / <alpha-value>)",
+          "accent-fill-hover": "rgb(var(--rv-accent-fill-hover) / <alpha-value>)",
+        },
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        rv: "6px",
+        "rv-frame": "8px",
+      },
+      boxShadow: {
+        "rv-frame": "var(--rv-shadow-frame)",
       },
       keyframes: {
         "accordion-down": {

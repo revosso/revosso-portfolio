@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* `clip`, not `hidden`: hidden makes body a scroll container and breaks position: sticky. */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html {
@@ -14,11 +15,6 @@ html {
 html.dark,
 html.dark body {
   background-color: #020617; /* slate-950 */
-}
-
-html.landing-overlay-open,
-html.landing-overlay-open body {
-  overflow: hidden;
 }
 
 html[data-scroll-locked],
@@ -113,5 +109,118 @@ html[data-scroll-locked] body {
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ------------------------------------------------------------------------ */
+/* Marketing site design tokens (prefixed `rv-`, consumed via tailwind.config) */
+/* Values are RGB channels so Tailwind opacity modifiers work.                 */
+/* ------------------------------------------------------------------------ */
+@layer base {
+  :root {
+    --rv-bg: 250 249 247;
+    --rv-surface: 255 255 255;
+    --rv-surface-2: 242 240 236;
+    --rv-border: 228 225 219;
+    --rv-text: 28 27 25;
+    --rv-muted: 94 90 83;
+    --rv-accent: 37 84 199;
+    --rv-accent-fill: 37 84 199;
+    --rv-accent-fill-hover: 30 68 166;
+    --rv-shadow-frame: 0 1px 2px rgb(28 27 25 / 0.06), 0 16px 32px -20px rgb(28 27 25 / 0.28);
+  }
+
+  .dark {
+    --rv-bg: 15 15 14;
+    --rv-surface: 23 23 21;
+    --rv-surface-2: 31 30 28;
+    --rv-border: 46 45 41;
+    --rv-text: 237 235 230;
+    --rv-muted: 164 160 151;
+    /* Lighter text accent keeps AA on the near-black base; fills keep white text at AA. */
+    --rv-accent: 138 168 255;
+    --rv-accent-fill: 37 84 199;
+    --rv-accent-fill-hover: 52 99 214;
+    --rv-shadow-frame: 0 1px 2px rgb(0 0 0 / 0.5), 0 20px 40px -20px rgb(0 0 0 / 0.8);
+  }
+
+  .rv-site,
+  .rv-portal {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 768px) {
+    .rv-site {
+      font-size: 18px;
+    }
+  }
+
+  /* The reserved scrollbar gutter shows the html background; match it to the site. */
+  html:has(.rv-site),
+  html:has(.rv-site) body {
+    background-color: rgb(var(--rv-bg));
+  }
+
+  .rv-site :focus-visible,
+  .rv-portal :focus-visible {
+    outline: 2px solid rgb(var(--rv-accent));
+    outline-offset: 3px;
+  }
+
+  .rv-site section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer components {
+  .rv-container {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+
+  .rv-section {
+    @apply py-20 md:py-28;
+  }
+
+  .rv-h1 {
+    font-size: clamp(2.375rem, 4.4vw, 3.75rem);
+    line-height: 1.06;
+    font-weight: 600;
+    letter-spacing: -0.032em;
+  }
+
+  .rv-h2 {
+    font-size: clamp(1.75rem, 2.6vw, 2.375rem);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.024em;
+  }
+
+  .rv-h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+  }
+
+  .rv-eyebrow {
+    @apply text-xs font-medium uppercase text-rv-muted md:text-[13px];
+    letter-spacing: 0.08em;
+  }
+
+  .rv-link {
+    @apply font-medium text-rv-accent underline decoration-rv-accent/30 underline-offset-4 transition-colors hover:decoration-rv-accent;
+  }
+
+  .rv-skip-link {
+    @apply fixed left-4 top-4 z-[100] -translate-y-24 rounded-rv bg-rv-accent-fill px-4 py-3 text-sm font-medium text-white transition-transform focus-visible:translate-y-0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.rv-site) {
+    scroll-behavior: smooth;
   }
 }

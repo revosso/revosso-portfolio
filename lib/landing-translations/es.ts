@@ -1,282 +1,468 @@
-/** Spanish — landing page marketing copy */
+/** Spanish: landing page marketing copy */
+
 import type { LandingLocaleMessages } from "./types"
 
 export const landingEs = {
-  nav: {
-    products: "Productos",
-    approach: "Enfoque",
-    services: "Servicios",
-    industries: "Soluciones",
-    careers: "Carreras",
-    contact: "Contacto",
+  a11y: {
+    skipToContent: "Saltar al contenido",
+    home: "Inicio de Revosso",
+    primaryNav: "Principal",
+    openMenu: "Abrir menú",
+    closeMenu: "Cerrar menú",
+    menuTitle: "Menú",
+    language: "Idioma",
+    changeLanguage: "Cambiar idioma",
+    opensInNewTab: "(se abre en una pestaña nueva)",
+    toggleTheme: "Cambiar tema",
   },
-  productsMenu: {
-    sectionLabel: "Nuestros productos",
-    comingSoon: "Próximamente",
-    items: {
-      rechajem: {
-        description: "Envía dinero a tu familia — rápido, seguro y directo desde tu celular.",
-      },
-      revofin: {
-        description: "Pagos, facturas y finanzas en un solo lugar para tu negocio.",
-      },
-      revomaket: {
-        description: "Abre tu tienda online y empieza a vender en minutos.",
-      },
-      revobarber: {
-        description: "Reservas online para barberías y salones — menos llamadas, más clientes.",
-      },
-      revocom: {
-        description: "Tu tienda, tus clientes y tus ventas — todo en una sola plataforma.",
-      },
-      revoschool: {
-        description: "Matrículas, clases y comunicación con padres — fácil y en un solo lugar.",
-      },
+  nav: {
+    services: "Servicios",
+    products: "Productos",
+    about: "Nosotros",
+    careers: "Empleo",
+    contact: "Contacto",
+    cta: "Reserva una llamada gratis",
+  },
+  megaMenu: {
+    label: "Menú de productos",
+    productsTab: "Productos",
+    servicesTab: "Servicios",
+    exploreAll: "Ver todos los productos",
+    close: "Cerrar menú",
+    categoriesLabel: "Categorías de productos",
+    categories: {
+      all: "Todos los productos",
+      business: "Gestión y finanzas",
+      commerce: "Comercio",
+      payments: "Pagos y móvil",
+      communication: "Comunicación",
     },
+    learnMore: "Saber más",
+    visitLive: "Visitar el sitio",
+    subProductsLabel: "Productos de {name}",
+    servicesHeading: "Qué construimos",
+    back: "Volver",
   },
   hero: {
-    h1: "Software a Medida, Ingeniería de Plataforma e Infraestructura Escalable",
-    subheadline:
-      "Desarrollamos plataformas de software a medida, modernizamos sistemas existentes y operamos infraestructura escalable para organizaciones que dependen de sistemas digitales confiables.",
-    primaryCta: "Discutir Su Proyecto",
-    secondaryCta: "Explorar Nuestro Enfoque",
-  },
-  whoWeAre: {
-    title: "Infraestructura Digital. Construida para Escala.",
-    intro:
-      "Revosso es una empresa de ingeniería de infraestructura y plataformas digitales. Construimos y operamos sistemas de misión crítica y bases digitales de largo plazo para empresas y negocios orientados a producto.",
-    partnerTitle: "Trabajamos con organizaciones que necesitan:",
-    requirements: [
-      "Arquitectura backend robusta",
-      "Plataformas digitales de alto rendimiento",
-      "Sistemas financieros y operativos seguros",
-      "Escalabilidad técnica a largo plazo",
-    ],
-    closing: "No entregamos soluciones a corto plazo.\nIngeniamos bases digitales.",
-  },
-  platformLifecycle: {
-    title: "De la Arquitectura a la Operación",
+    eyebrow: "Agencia digital y empresa de software",
+    title: "Una agencia digital que construye software, y opera el suyo.",
     subtitle:
-      "Construimos nuevas plataformas desde cero, asumimos y optimizamos sistemas existentes, y operamos y escalamos su infraestructura.",
-    build: {
-      title: "CONSTRUIR",
-      description:
-        "Diseñamos y desarrollamos plataformas digitales a medida desde el inicio, alineadas con sus objetivos de negocio y crecimiento a largo plazo.",
-    },
-    takeOver: {
-      title: "ASUMIR & OPTIMIZAR",
-      intro: "Asumimos la gestión de plataformas y sistemas existentes para:",
-      items: [
-        "Estabilizar y refactorizar el código",
-        "Mejorar el rendimiento",
-        "Reducir la deuda técnica",
-        "Modernizar la arquitectura",
-        "Fortalecer la seguridad",
-      ],
-    },
-    operate: {
-      title: "OPERAR & ESCALAR",
-      intro: "Operamos y escalamos su infraestructura y operaciones de plataforma, incluyendo:",
-      items: [
-        "Alojamiento seguro",
-        "Monitoreo de rendimiento",
-        "Despliegue en la nube",
-        "Mantenimiento técnico continuo",
-        "Escalabilidad de infraestructura",
-      ],
-    },
-    cta: "Discutir Sus Necesidades de Plataforma",
+      "Diseñamos, construimos y operamos software para clientes. También operamos nuestros propios productos: Revofin, RevoMaket, Rechajem y Revokonek. Sabemos lo que hace falta para que el software siga funcionando después del lanzamiento.",
+    primaryCta: "Reserva una llamada gratis de 30\u00a0min",
+    secondaryCta: "Ver nuestros productos",
+    showcaseCaption: "Productos que operamos",
   },
-  howWeWork: {
-    title: "Ingeniería con Visión a Largo Plazo",
-    principles: [
-      { title: "Arquitectura antes del código", description: "Diseñamos sistemas que escalan sin problemas" },
-      { title: "Escalabilidad desde el primer día", description: "Construido para crecer con su negocio" },
-      { title: "Seguridad primero", description: "Protección integrada desde la base" },
-      { title: "Código limpio y mantenible", description: "Código que resiste el paso del tiempo" },
-      { title: "Rendimiento como estándar", description: "Velocidad y eficiencia por diseño" },
-      { title: "Infraestructura confiable", description: "Sistemas fiables en los que puede confiar" },
+  about: {
+    eyebrow: "Nosotros",
+    title: "Quién es Revosso",
+    body: "Revosso es una empresa de tecnología registrada en Brasil. Trabajamos con empresas como agencia digital, construyendo sitios web, plataformas web y software, y operamos nuestros propios productos. Operarlos cada día define cómo construimos para nuestros clientes.",
+    clientsTitle: "Construimos para clientes",
+    clientsBody:
+      "Sitios web, plataformas web, apps e integraciones, diseñados y construidos para tu empresa, y después alojados y mantenidos si lo necesitas.",
+    productsTitle: "Operamos nuestros propios productos",
+    productsBody:
+      "Revofin, RevoMaket, Rechajem y Revokonek son nuestros. Los construimos, los alojamos y los arreglamos cuando algo falla.",
+    factsLabel: "Datos de la empresa",
+    facts: {
+      legalEntity: "Razón social",
+      registration: "CNPJ",
+      founded: "Fundación",
+      team: "Equipo",
+      locations: "Ubicación",
+    },
+    link: "Más sobre nosotros",
+  },
+  services: {
+    eyebrow: "Servicios",
+    title: "Qué construimos",
+    intro: "Todo lo que es software, desde el primer diseño hasta los servidores donde funciona.",
+    catalog: {
+      websites: {
+        name: "Sitios web y landing pages",
+        description: "Sitios corporativos y páginas centradas en un lanzamiento o una campaña.",
+      },
+      platforms: {
+        name: "Plataformas web y SaaS",
+        description: "Aplicaciones web con cuentas, datos y lógica de negocio, incluido software que vendes a tus propios clientes.",
+      },
+      mobile: { name: "Apps móviles (iOS y Android)", description: "Aplicaciones para iPhone y teléfonos Android." },
+      apis: {
+        name: "APIs e integraciones",
+        description: "APIs para tu producto y conexiones entre las herramientas y servicios que ya usas.",
+      },
+      design: { name: "Diseño UI/UX", description: "Diseño de interfaz y de experiencia para sitios, plataformas y apps." },
+      email: { name: "Email marketing", description: "Campañas de correo y las plantillas con las que se envían." },
+      hosting: {
+        name: "Alojamiento, nube y mantenimiento",
+        description: "Alojamiento y configuración en la nube, más actualizaciones y correcciones después del lanzamiento.",
+      },
+    },
+    engagementTitle: "Tres formas de trabajar con nosotros",
+    youGet: "Recibes",
+    steps: [
+      {
+        title: "Construir",
+        description: "Software nuevo diseñado en torno a cómo funciona tu empresa.",
+        bullets: ["Arquitectura y diseño técnico", "Plataformas web y APIs", "Documentación desde el principio"],
+        deliverables: "Un plan de arquitectura, software funcionando y documentación.",
+      },
+      {
+        title: "Asumir",
+        description: "Nos hacemos cargo de un sistema existente y lo volvemos fiable.",
+        bullets: [
+          "Auditoría y estabilización del código",
+          "Corrección de problemas de rendimiento y seguridad",
+          "Reducción de la deuda técnica paso a paso",
+        ],
+        deliverables: "Una auditoría, un código estable y un plan de modernización.",
+      },
+      {
+        title: "Operar",
+        description: "Lo alojamos, supervisamos y mantenemos mientras creces.",
+        bullets: ["Alojamiento y despliegue", "Supervisión y respuesta a incidentes", "Mantenimiento y escalado"],
+        deliverables: "Un equipo responsable de que todo siga funcionando.",
+      },
     ],
   },
-  industries: {
-    title: "Nuestras Capacidades de Ingeniería",
-    subtitle:
-      "Desde la construcción de nuevos sistemas hasta la modernización de legados — cubrimos todo el espectro de la ingeniería de software a medida.",
+  products: {
+    eyebrow: "Nuestros productos",
+    title: "Productos que operamos",
+    intro: "Los operamos nosotros mismos. El mismo equipo trabaja para clientes.",
+    learnMore: "Saber más",
+    learnMoreAbout: "Saber más sobre {name}",
+    allProducts: "Todos los productos",
+  },
+  whoWeHelp: {
+    eyebrow: "Con quién trabajamos",
+    title: "Por dónde suelen empezar los clientes",
     items: [
       {
-        title: "Desarrollo de Software a Medida",
-        description:
-          "Diseñamos y desarrollamos plataformas, aplicaciones y sistemas digitales a medida desde el inicio — alineados con sus necesidades exactas y objetivos a largo plazo.",
+        title: "Empezar algo nuevo",
+        body: "Tienes una idea y necesitas software que aguante cuando lleguen los clientes reales. Lo diseñamos y lo construimos bien desde el principio.",
+        cta: "Hablar de un proyecto nuevo",
       },
       {
-        title: "Asunción & Modernización de Sistemas",
-        description:
-          "Tomamos la gestión de codebases existentes, los estabilizamos, eliminamos la deuda técnica y modernizamos la arquitectura para actualizar sistemas legados.",
+        title: "Atascado con un sistema frágil",
+        body: "El código es lento, inestable o ya nadie del equipo lo entiende. Lo estabilizamos sin una reescritura arriesgada.",
+        cta: "Hablar de asumir el sistema",
       },
       {
-        title: "Consultoría Técnica & Arquitectura",
-        description:
-          "Asesoramos sobre diseño de sistemas, selección de tecnologías y estrategia de escalabilidad — ayudándole a tomar las decisiones técnicas correctas antes y durante el desarrollo.",
-      },
-      {
-        title: "Mantenimiento & Evolución a Largo Plazo",
-        description:
-          "Proporcionamos propiedad técnica continua de sus sistemas — monitoreo de rendimiento, mejoras iterativas y escalabilidad de su plataforma a medida que crece su negocio.",
+        title: "Necesitas quien lo opere",
+        body: "Prefieres dirigir tu negocio antes que servidores. Alojamos, supervisamos y mantenemos la plataforma por ti.",
+        cta: "Hablar de operación",
       },
     ],
-    cta: "Discutir Su Proyecto",
   },
-  clients: {
-    title: "Confiado por Empresas y Socios",
-    copy: "Colaboramos con empresas y plataformas para ofrecer soluciones seguras, escalables y de alto rendimiento.",
+  process: {
+    eyebrow: "Proceso",
+    title: "Cómo trabajamos",
+    intro: "Cuatro pasos. Ves software funcionando pronto y a menudo.",
+    youGet: "Recibes",
+    steps: [
+      {
+        title: "Descubrimiento",
+        description: "Entendemos tus objetivos, restricciones y sistemas actuales.",
+        deliverable: "Un plan con alcance definido.",
+      },
+      {
+        title: "Arquitectura",
+        description: "Diseñamos el sistema antes de escribir código.",
+        deliverable: "Un plan técnico y un calendario.",
+      },
+      {
+        title: "Construcción",
+        description: "Entregamos en ciclos cortos, con demos frecuentes.",
+        deliverable: "Software funcionando pronto.",
+      },
+      {
+        title: "Operación",
+        description: "Nos quedamos para supervisar, corregir y mejorar.",
+        deliverable: "Un responsable técnico a largo plazo.",
+      },
+    ],
+  },
+  principles: {
+    eyebrow: "Principios",
+    title: "Cómo construimos",
+    items: [
+      {
+        title: "Primero el diseño",
+        description: "Pensamos el sistema antes de escribir código, para no tener que reescribirlo después.",
+      },
+      { title: "Preparado para crecer", description: "Planificamos más usuarios y más datos desde el principio." },
+      {
+        title: "Seguridad en el diseño",
+        description: "La seguridad forma parte de la arquitectura, no de una lista final.",
+      },
+      { title: "Código legible", description: "Otro ingeniero debe poder retomarlo y avanzar rápido." },
+      {
+        title: "El rendimiento es un requisito",
+        description: "Medimos la velocidad y corregimos regresiones antes de publicar.",
+      },
+      {
+        title: "Planificar los fallos",
+        description: "Supervisión, copias de seguridad y recuperación listas antes del lanzamiento.",
+      },
+    ],
+  },
+  security: {
+    eyebrow: "Seguridad y empresa",
+    title: "Seguridad",
+    body: "La seguridad forma parte de cómo diseñamos, construimos y operamos software. Control de acceso, supervisión y copias de seguridad se planifican desde el principio, no se añaden después.",
+    link: "Cómo abordamos la seguridad",
+    company: {
+      title: "Operado por Revosso LTDA",
+      body: "Revosso LTDA es nuestra empresa registrada en Brasil y la operadora de Revofin.",
+      legalNameLabel: "Razón social",
+      registrationLabel: "Registro mercantil",
+      policiesLabel: "Políticas",
+    },
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Preguntas",
+    items: [
+      {
+        question: "¿Cuánto cuesta un proyecto?",
+        answer:
+          "Depende del alcance. Tras una llamada gratuita de 30 minutos proponemos un alcance cerrado o una colaboración continua, para que conozcas los costes de antemano.",
+      },
+      {
+        question: "¿Cuánto tiempo lleva?",
+        answer: "Los proyectos acotados suelen llevar [plazo]. Damos un calendario realista después del descubrimiento.",
+      },
+      {
+        question: "¿Podéis haceros cargo de nuestro código actual?",
+        answer: "Sí. Empezamos con una auditoría y luego estabilizamos y modernizamos paso a paso, en lugar de reescribirlo todo.",
+      },
+      {
+        question: "¿Seremos dueños del código?",
+        answer: "[Confirmar: eres dueño de la PI y del código fuente de lo que construimos para ti.]",
+      },
+      {
+        question: "¿Firmáis acuerdos de confidencialidad?",
+        answer: "Sí. Firmamos un NDA antes de hablar de tu proyecto, si lo prefieres.",
+      },
+      {
+        question: "¿Ofrecéis soporte continuo?",
+        answer: "Sí. Después del lanzamiento podemos alojar, supervisar y mantener el software por ti.",
+      },
+      {
+        question: "¿Podéis trabajar con nuestro equipo interno?",
+        answer: "Sí. Podemos liderar el trabajo, apoyar a tus ingenieros o pasarles el relevo.",
+      },
+      {
+        question: "¿Qué pasa en la llamada gratuita?",
+        answer: "Escuchamos, hacemos preguntas y te decimos con honestidad si podemos ayudarte y cómo. Sin compromiso.",
+      },
+    ],
   },
   finalCta: {
-    title: "Construyamos la Infraestructura Detrás de Su Crecimiento",
-    subtitle:
-      "Comparta los requisitos de su proyecto y descubra cómo podemos diseñar soluciones escalables para su negocio.",
-    trust:
-      "Formamos asociaciones a largo plazo basadas en ingeniería estructurada, estabilidad operacional y evolución continua de la plataforma. Priorizamos claridad arquitectónica y propiedad técnica sobre soluciones rápidas.",
-    scheduleButton: "Programar una reunión",
-    button: "Contáctenos",
+    eyebrow: "Contacto",
+    title: "Hablemos",
+    body: "Cuéntanos en qué estás trabajando. Respondemos con próximos pasos claros.",
+    primaryCta: "Reserva una llamada gratis de 30\u00a0min",
+    formIntro: "O envíanos un mensaje corto.",
   },
-  contact: {
-    title: {
-      default: "Contáctenos",
-      newPlatform: "Desarrollo de Nueva Plataforma",
-      takeover: "Asunción y Optimización de Plataforma",
-      maintenance: "Mantenimiento de Plataforma",
-      hosting: "Infraestructura y Alojamiento",
-      partnership: "Consulta de Asociación",
+  contactForm: {
+    name: "Nombre",
+    email: "Correo de trabajo",
+    need: "Necesito ayuda con",
+    needPlaceholder: "Selecciona una opción",
+    needOptions: {
+      newBuild: "Un proyecto nuevo",
+      fixExisting: "Un sistema existente",
+      hostingOps: "Alojamiento y operación",
+      notSure: "Aún no lo sé",
     },
-    description: "Cuéntenos sobre su proyecto. Respondemos en 24 horas.",
-    fields: {
-      name: "Nombre",
-      email: "Correo electrónico",
-      company: "Empresa",
-      need: "¿Qué necesita?",
-      message: "Mensaje",
-      needPlaceholder: "Seleccione su necesidad",
-      messagePlaceholder: "Cuéntenos sobre su proyecto...",
-    },
-    options: {
-      newPlatform: "Desarrollo de Nueva Plataforma",
-      takeover: "Asunción y Optimización de Plataforma",
-      maintenance: "Mantenimiento de Plataforma",
-      hosting: "Infraestructura y Alojamiento",
-      partnership: "Asociación",
-      general: "Consulta General",
-    },
-    buttons: {
-      cancel: "Cancelar",
-      send: "Enviar",
-      sending: "Enviando...",
-    },
-    toast: {
-      selectionRequired: "Selección requerida",
-      selectionRequiredDesc: "Por favor seleccione lo que necesita.",
-      success: "Mensaje enviado con éxito",
-      successDesc: "Responderemos en 24 horas. Se ha enviado un correo de confirmación.",
-      error: "Error",
-      errorDesc: "Ocurrió un error. Intente nuevamente.",
+    message: "Mensaje",
+    messagePlaceholder: "Unas líneas sobre tu proyecto, plazos y configuración actual.",
+    honeypot: "Deja este campo vacío",
+    submit: "Enviar mensaje",
+    sending: "Enviando…",
+    successTitle: "Mensaje enviado",
+    success: "Gracias, hemos recibido tu mensaje. Te responderemos por correo.",
+    sendAnother: "Enviar otro mensaje",
+    error: "Algo salió mal. Inténtalo de nuevo o escríbenos a {email}.",
+    rateLimited: "Demasiados intentos. Espera unos minutos y vuelve a intentarlo.",
+    validation: {
+      name: "Escribe tu nombre (al menos 2 caracteres).",
+      email: "Escribe un correo válido.",
+      need: "Elige con qué necesitas ayuda.",
+      message: "Escribe al menos 10 caracteres.",
+      messageMax: "Tu mensaje debe tener menos de 2000 caracteres.",
     },
   },
   footer: {
-    description:
-      "Infraestructura digital, ingeniería de plataforma y sistemas escalables para el crecimiento empresarial.",
-    services: "Servicios",
-    company: "Empresa",
-    legal: "Legal",
-    contact: "Contacto",
+    tagline: "Agencia digital y empresa de software. Construimos para clientes y operamos nuestros propios productos.",
+    servicesTitle: "Servicios",
+    companyTitle: "Empresa",
+    legalTitle: "Legal",
     links: {
-      customPlatforms: "Plataformas a Medida",
-      platformEngineering: "Ingeniería de Plataforma",
-      infrastructure: "Infraestructura",
-      ourApproach: "Nuestro Enfoque",
-      industries: "Soluciones",
-      careers: "Carreras",
+      about: "Nosotros",
+      products: "Productos",
+      howWeWork: "Cómo trabajamos",
+      faq: "Preguntas frecuentes",
+      careers: "Empleo",
       contact: "Contacto",
       privacy: "Privacidad",
       terms: "Términos",
-      cookies: "Cookies",
       security: "Seguridad",
+      cookies: "Cookies",
     },
+    followUs: "Síguenos",
+    social: {
+      facebook: "Revosso en Facebook",
+      instagram: "Revosso en Instagram",
+      tiktok: "Revosso en TikTok",
+    },
+    hiring: "Estamos contratando.",
+    hiringLink: "Ver vacantes",
     copyright: "Todos los derechos reservados.",
   },
-  careers: {
-    hero: {
-      eyebrow: "Carreras",
-      title: "Construye el futuro con Revosso",
-      subtitle:
-        "Únete a nosotros para crear productos digitales, plataformas de software y soluciones con un impacto real.",
-      cta: "Explorar puestos abiertos",
+  productPage: {
+    breadcrumb: "Productos",
+    status: "En línea",
+    visitLive: "Visitar el sitio",
+    gallery: "Capturas de pantalla",
+    overview: "Descripción",
+    whatItDoes: "Qué hace",
+    whoFor: "Para quién",
+    subProducts: "Tres productos",
+    builtByTitle: "Construido y operado por Revosso",
+    builtByBody:
+      "Revosso diseña, construye, aloja y mantiene {name}, con el mismo proceso que usamos en los proyectos de clientes.",
+    ctaTitle: "¿Quieres algo así para tu empresa?",
+    ctaButton: "Habla con nosotros",
+    otherProducts: "Otros productos",
+  },
+  productsPage: {
+    eyebrow: "Productos",
+    title: "Productos que construimos y operamos",
+    intro: "Cuatro productos en funcionamiento, construidos y operados por el equipo de Revosso.",
+    howTitle: "Cómo los construimos y operamos",
+    howBody:
+      "El mismo equipo diseña, construye, aloja y mantiene cada producto. Lo que aprendemos operándolos va al trabajo que hacemos para clientes.",
+    seo: {
+      title: "Productos",
+      description: "Revofin, RevoMaket, Rechajem y Revokonek: productos en funcionamiento, construidos y operados por Revosso.",
     },
-    whyJoin: {
-      title: "¿Por qué unirte a Revosso?",
-      subtitle:
-        "Oportunidades para trabajar en productos, contribuir a proyectos tecnológicos y crecer con la empresa.",
+  },
+  aboutPage: {
+    eyebrow: "Nosotros",
+    title: "Una agencia digital que también opera sus propios productos",
+    intro:
+      "Revosso es una empresa de tecnología registrada en Brasil. Construimos software para clientes, y construimos y operamos nuestros propios productos.",
+    storyTitle: "Dos caras de una misma empresa",
+    story: [
+      "Como agencia digital, diseñamos y construimos sitios web, plataformas web, apps e integraciones para empresas, y podemos alojarlos y mantenerlos después del lanzamiento.",
+      "También operamos cuatro productos propios: Revofin, RevoMaket, Rechajem y Revokonek. Somos responsables de ellos cada día, desde el primer diseño hasta los servidores donde funcionan.",
+    ],
+    sidesTitle: "Cómo se alimentan las dos caras",
+    sides: [
+      {
+        title: "Nuestros productos nos mantienen honestos",
+        body: "Operar software en producción significa lidiar con usuarios reales, caídas y solicitudes de soporte. Esa experiencia llega a cada proyecto de cliente.",
+      },
+      {
+        title: "El trabajo con clientes nos amplía",
+        body: "Los proyectos de clientes nos llevan a sectores y problemas que nuestros productos no cubren, y lo que aprendemos vuelve a nuestros productos.",
+      },
+    ],
+    factsTitle: "Datos de la empresa",
+    servicesTitle: "Qué construimos",
+    careersTitle: "Trabaja con nosotros",
+    careersBody: "Estamos contratando. Mira las vacantes abiertas ahora.",
+    careersLink: "Ver vacantes",
+    contactTitle: "Empieza un proyecto",
+    contactBody: "Cuéntanos en qué estás trabajando, o reserva una llamada gratis de 30 minutos.",
+    contactLink: "Contáctanos",
+    seo: {
+      title: "Nosotros",
+      description:
+        "Revosso es una agencia digital y empresa de software registrada en Brasil. Construimos software para clientes y operamos nuestros propios productos.",
+    },
+  },
+  careers: {
+    seo: {
+      title: "Empleo",
+      description: "Puestos abiertos en Revosso, agencia digital y empresa de software. En remoto, jornada completa o parcial.",
+    },
+    eyebrow: "Empleo",
+    title: "Construye software con Revosso",
+    intro: "Únete al equipo que construye software para clientes y opera Revofin, RevoMaket, Rechajem y Revokonek.",
+    seeRoles: "Ver puestos abiertos",
+    why: {
+      title: "Por qué Revosso",
       items: [
         {
-          title: "Trabajar en productos digitales",
-          description:
-            "Ayuda a construir y dar a conocer Revofin, Revomaket, Revokonek, Rechajem y el software a medida que desarrollamos.",
+          title: "Trabaja en productos digitales",
+          description: "Ayuda a construir y hacer crecer Revofin, RevoMaket, Revokonek, Rechajem y software a medida para clientes.",
         },
         {
-          title: "Contribuir a proyectos tecnológicos",
-          description:
-            "Participa en trabajo real de producto, plataforma e infraestructura, desde marketing y operaciones hasta ingeniería.",
+          title: "Contribuye a proyectos tecnológicos reales",
+          description: "Participa en el trabajo de producto, plataforma e infraestructura, del marketing a la ingeniería.",
         },
         {
-          title: "Colaborar con una empresa en crecimiento",
-          description:
-            "Únete a un equipo que construye productos y servicios digitales, y ayuda a que Revosso se dé a conocer.",
+          title: "Trabaja en una empresa en crecimiento",
+          description: "Únete a un equipo que construye productos y servicios digitales y ayuda a definir cómo se presenta Revosso en el mercado.",
         },
         {
-          title: "Desarrollar habilidades profesionales",
-          description:
-            "Aprende entregando trabajo que importa: estrategia, contenido, campañas y los sistemas que las sustentan.",
+          title: "Desarrolla tus habilidades",
+          description: "Aprende entregando trabajo que importa: estrategia, contenido, campañas y los sistemas que hay detrás.",
         },
       ],
     },
-    openPositions: {
+    roles: {
       title: "Puestos abiertos",
-      viewDetails: "Ver puesto",
-      posted: "Publicado",
+      openRole: "Ver puesto",
+      empty: "No hay puestos abiertos en este momento. Aun así, puedes escribirnos a {email}. Leemos todas las candidaturas.",
+    },
+    general: {
+      title: "¿No ves tu puesto?",
+      body: "Escríbenos a {email} y cuéntanos cómo podrías ayudar. Leemos todas las candidaturas.",
+    },
+    labels: {
       department: "Departamento",
-      employmentType: "Tipo de empleo",
-      workMode: "Modalidad de trabajo",
       location: "Ubicación",
+      employmentType: "Tipo de contrato",
+      workMode: "Modalidad",
+      posted: "Publicado el",
     },
-    empty: {
-      message:
-        "Ahora mismo no tenemos puestos abiertos, pero siempre nos interesa conocer a personas con talento.",
-      applyCta: "Enviar una solicitud general",
-    },
-    apply: {
-      viaUrl: "Solicitar este puesto",
-      viaEmail: "Solicitar por correo",
-      unavailable: "Las solicitudes aún no están abiertas para este puesto.",
-      opensInNewTab: "(se abre en una pestaña nueva)",
+    values: {
+      department: {
+        sales: "Ventas",
+        marketing: "Marketing",
+      },
+      location: {
+        remote: "En remoto",
+      },
+      employmentType: {
+        "full-time-or-part-time": "Jornada completa o parcial",
+      },
+      workMode: {
+        remote: "En remoto",
+      },
     },
     details: {
+      back: "Empleo",
       overview: "Descripción",
       responsibilities: "Responsabilidades",
-      requirements: "Requisitos",
+      requirements: "Qué buscamos",
       niceToHave: "Valorable",
-      compensation: "Compensación",
-      benefits: "Beneficios",
-      howToApply: "Cómo postular",
-      backToCareers: "Volver a Carreras",
+      howToApply: "Cómo postularse",
+      summary: "Resumen del puesto",
+      apply: "Postularse por correo",
+      emailLabel: "O escribe a",
+    },
+    application: {
+      subject: "Candidatura: {title}",
+      body: "Hola, equipo de Revosso:\n\nMe gustaría postularme al puesto de {title}.\n\nNombre:\nEnlace a mi perfil o CV:\nPor qué este puesto:\n\nGracias,",
     },
     notFound: {
       title: "Puesto no encontrado",
-      message: "Esta oferta ya no está disponible o el enlace es incorrecto.",
+      message: "Este puesto ya no está abierto o el enlace es incorrecto.",
       back: "Ver puestos abiertos",
     },
-  },
-  homeCareers: {
-    title: "Construye con Revosso",
-    subtitle:
-      "Únete a nosotros para crear productos que resuelven problemas reales de empresas y comunidades.",
-    cta: "Ver carreras",
   },
 } satisfies LandingLocaleMessages
