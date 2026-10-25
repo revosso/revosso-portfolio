@@ -1,89 +1,44 @@
-import { getSiteUrl } from "@/lib/careers/jobs"
-import type { JobPosition } from "@/lib/careers/types"
+import type { Job } from "@/content/careers/jobs"
+import { COMPANY } from "@/lib/landing-content"
+import type { LandingLocale } from "@/lib/landing-locale"
 
-export type JobPostingJsonLd = {
-  "@context": "https://schema.org"
-  "@type": "JobPosting"
-  title: string
-  description: string
-  datePosted: string
-  hiringOrganization: {
-    "@type": "Organization"
-    name: string
-    sameAs: string
-  }
-  identifier: {
-    "@type": "PropertyValue"
-    name: string
-    value: string
-  }
-  url: string
-  dateModified?: string
-  employmentType?: string
-  jobLocationType?: "TELECOMMUTE"
-  jobLocation?: {
-    "@type": "Place"
-    address: {
-      "@type": "PostalAddress"
-      addressLocality: string
-    }
-  }
+const EMPLOYMENT_TYPES: Record<Job["employmentType"], string[]> = {
+  "full-time-or-part-time": ["FULL_TIME", "PART_TIME"],
 }
 
-const REMOTE_PATTERN = /\b(remote|télétravail|teletravail|remoto|hybrid|hybride)\b/i
+/**
+ * schema.org JobPosting built only from confirmed data. Fields we don't have
+ * (applicantLocationRequirements, baseSalary, validThrough unless a deadline is set)
+ * are left out rather than guessed.
+ */
+export function buildJobPostingJsonLd(job: Job, locale: LandingLocale, siteUrl: string, logoUrl: string) {
+  const copy = job.copy[locale]
+  const description = [copy.summary, ...copy.overview]
+    .map((paragraph) => `<p>${paragraph}</p>`)
+    .concat(
+      `<ul>${copy.responsibilities.map((item) => `<li>${item}</li>`).join("")}</ul>`,
+      `<ul>${copy.requirements.map((item) => `<li>${item}</li>`).join("")}</ul>`,
+    )
+    .join("")
 
-export function isPublicJob(job: JobPosition): boolean {
-  return job.status === "open" && job.published
-}
-
-export function buildJobPostingJsonLd(job: JobPosition, siteUrl: string = getSiteUrl()): JobPostingJsonLd | null {
-  if (!isPublicJob(job)) return null
-  if (!job.title.trim() || !job.description.trim() || !job.createdAt) return null
-
-  const remoteFromMode = job.workMode ? REMOTE_PATTERN.test(job.workMode) : false
-  const remoteFromLocation = job.location ? REMOTE_PATTERN.test(job.location) : false
-  const remote = remoteFromMode || remoteFromLocation
-  if (!job.location && !remote) return null
-  const physicalLocation =
-    job.location && !REMOTE_PATTERN.test(job.location) ? job.location : null
-
-  const posting: JobPostingJsonLd = {
+  return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    title: job.title,
-    description: job.description,
-    datePosted: job.createdAt,
+    title: copy.title,
+    description,
+    inLanguage: locale,
+    datePosted: job.datePosted,
+    ...(job.dateModified ? { dateModified: job.dateModified } : {}),
+    ...(job.applicationDeadline ? { validThrough: job.applicationDeadline } : {}),
+    employmentType: EMPLOYMENT_TYPES[job.employmentType],
+    ...(job.workMode === "remote" ? { jobLocationType: "TELECOMMUTE" } : {}),
     hiringOrganization: {
       "@type": "Organization",
-      name: "Revosso",
+      name: COMPANY.legalName,
       sameAs: siteUrl,
+      logo: logoUrl,
     },
-    identifier: {
-      "@type": "PropertyValue",
-      name: "Revosso",
-      value: job.id,
-    },
+    identifier: { "@type": "PropertyValue", name: COMPANY.legalName, value: job.slug },
     url: `${siteUrl}/careers/${job.slug}`,
   }
-
-  if (job.updatedAt) {
-    posting.dateModified = job.updatedAt
-  }
-  if (job.employmentType) {
-    posting.employmentType = job.employmentType
-  }
-  if (remote) {
-    posting.jobLocationType = "TELECOMMUTE"
-  }
-  if (physicalLocation) {
-    posting.jobLocation = {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: physicalLocation,
-      },
-    }
-  }
-
-  return posting
 }

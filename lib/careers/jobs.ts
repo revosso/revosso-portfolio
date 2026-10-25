@@ -1,74 +1,19 @@
-import { existsSync, readFileSync } from "node:fs"
-import { join } from "node:path"
-import {
-  filterOpenJobPositions,
-  filterPublishedJobPositions,
-  findJobPositionBySlug,
-  parseOpenPositionsFile,
-} from "@/lib/careers/parse-open-positions"
-import { CareersContentError } from "@/lib/careers/types"
-import type { CareersFileConfig, JobPosition, ParsedCareersFile } from "@/lib/careers/types"
+import { CAREERS_EMAIL, JOBS, type Job } from "@/content/careers/jobs"
 
-export const OPEN_POSITIONS_PATH = join(process.cwd(), "content/careers/open-positions.md")
-
-let cachedFile: ParsedCareersFile | null = null
-
-export function loadCareersFile(filePath: string = OPEN_POSITIONS_PATH): ParsedCareersFile {
-  if (!existsSync(filePath)) {
-    throw new CareersContentError(`Missing careers content file: ${filePath}`)
-  }
-
-  try {
-    const source = readFileSync(filePath, "utf8")
-    return parseOpenPositionsFile(source)
-  } catch (error) {
-    if (error instanceof CareersContentError) throw error
-    throw new CareersContentError(
-      `Failed to read careers content file ${filePath}: ${error instanceof Error ? error.message : "unknown error"}`,
-    )
-  }
+export function isPublicJob(job: Job): boolean {
+  return job.status === "open" && job.published
 }
 
-function loadParsedFile(): ParsedCareersFile {
-  if (process.env.NODE_ENV === "production" && cachedFile) {
-    return cachedFile
-  }
-
-  const parsed = loadCareersFile(OPEN_POSITIONS_PATH)
-  if (process.env.NODE_ENV === "production") {
-    cachedFile = parsed
-  }
-  return parsed
+/** Open, published roles in the order they're listed in `content/careers/jobs.ts`. */
+export function getOpenJobs(): Job[] {
+  return JOBS.filter(isPublicJob)
 }
 
-export function getAllJobPositions(): JobPosition[] {
-  return loadParsedFile().positions
+export function getPublicJob(slug: string): Job | null {
+  const job = JOBS.find((j) => j.slug === slug)
+  return job && isPublicJob(job) ? job : null
 }
 
-export function getPublishedJobPositions(): JobPosition[] {
-  return filterPublishedJobPositions(getAllJobPositions())
-}
-
-export function getOpenJobPositions(): JobPosition[] {
-  return filterOpenJobPositions(getAllJobPositions())
-}
-
-export function getJobPositionBySlug(slug: string): JobPosition | null {
-  return findJobPositionBySlug(getAllJobPositions(), slug)
-}
-
-export function getCareersFileConfig(): CareersFileConfig {
-  return loadParsedFile().config
-}
-
-export function getPublicJobPositionBySlug(slug: string): JobPosition | null {
-  const job = getJobPositionBySlug(slug)
-  if (!job || job.status !== "open" || job.published !== true) {
-    return null
-  }
-  return job
-}
-
-export function getSiteUrl(): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL || "https://revosso.com").replace(/\/$/, "")
+export function applicationEmail(job: Job): string {
+  return job.applicationEmail ?? CAREERS_EMAIL
 }
