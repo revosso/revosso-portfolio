@@ -1,14 +1,12 @@
-"use client"
-
-import { useState, useEffect } from "react"
+import type { Metadata } from "next"
 import Link from "next/link"
-import { resolveInitialLandingLocale } from "@/lib/landing-locale"
-import { Code, ArrowLeft } from "lucide-react"
+import { getLandingLocale } from "@/lib/landing-locale.server"
+import { LandingSiteShell } from "@/components/landing/landing-site-shell"
+import { LegalBox, LegalList, LegalPage, LegalSection, LegalSubheading, legalLinkClass } from "@/components/landing/legal"
 
 type Locale = "en" | "fr" | "pt-BR" | "es"
 
 const data: Record<Locale, {
-  backToHome: string
   title: string
   lastUpdated: string
   s1Title: string
@@ -45,14 +43,8 @@ const data: Record<Locale, {
   s6Company: string
   s6Email: string
   s6Website: string
-  allRightsReserved: string
-  footerPrivacy: string
-  footerTerms: string
-  footerCookies: string
-  footerSecurity: string
 }> = {
   en: {
-    backToHome: "Back to Home",
     title: "Cookie Policy",
     lastUpdated: "Last updated:",
     s1Title: "1. What Are Cookies?",
@@ -93,14 +85,8 @@ const data: Record<Locale, {
     s6Company: "Revosso",
     s6Email: "Email:",
     s6Website: "Website:",
-    allRightsReserved: "All rights reserved.",
-    footerPrivacy: "Privacy",
-    footerTerms: "Terms",
-    footerCookies: "Cookies",
-    footerSecurity: "Security",
   },
   fr: {
-    backToHome: "Retour à l'accueil",
     title: "Politique en Matière de Cookies",
     lastUpdated: "Dernière mise à jour :",
     s1Title: "1. Que sont les Cookies ?",
@@ -141,14 +127,8 @@ const data: Record<Locale, {
     s6Company: "Revosso",
     s6Email: "Courriel :",
     s6Website: "Site web :",
-    allRightsReserved: "Tous droits réservés.",
-    footerPrivacy: "Confidentialité",
-    footerTerms: "Conditions",
-    footerCookies: "Cookies",
-    footerSecurity: "Sécurité",
   },
   "pt-BR": {
-    backToHome: "Voltar ao início",
     title: "Política de Cookies",
     lastUpdated: "Última atualização:",
     s1Title: "1. O que são Cookies?",
@@ -189,14 +169,8 @@ const data: Record<Locale, {
     s6Company: "Revosso",
     s6Email: "E-mail:",
     s6Website: "Site:",
-    allRightsReserved: "Todos os direitos reservados.",
-    footerPrivacy: "Privacidade",
-    footerTerms: "Termos",
-    footerCookies: "Cookies",
-    footerSecurity: "Segurança",
   },
   es: {
-    backToHome: "Volver al inicio",
     title: "Política de Cookies",
     lastUpdated: "Última actualización:",
     s1Title: "1. ¿Qué son las Cookies?",
@@ -237,172 +211,120 @@ const data: Record<Locale, {
     s6Company: "Revosso",
     s6Email: "Correo electrónico:",
     s6Website: "Sitio web:",
-    allRightsReserved: "Todos los derechos reservados.",
-    footerPrivacy: "Privacidad",
-    footerTerms: "Términos",
-    footerCookies: "Cookies",
-    footerSecurity: "Seguridad",
   },
 }
 
 const lastUpdated = "March 2026"
 
-export default function CookiesPage() {
-  const [locale, setLocale] = useState<Locale>("en")
+export async function generateMetadata(): Promise<Metadata> {
+  const t = data[await getLandingLocale()]
+  return { title: t.title, alternates: { canonical: "/cookies" } }
+}
 
-  useEffect(() => {
-    let cancelled = false
-    resolveInitialLandingLocale().then((l) => {
-      if (!cancelled) setLocale(l as Locale)
-    })
-    return () => {
-      cancelled = true
-    }
-  }, [])
+const tableClass = "w-full text-left text-base"
+const headCellClass = "border-b border-rv-border p-4 font-semibold"
 
-  const t = data[locale]
-  const year = new Date().getFullYear()
+export default async function CookiesPage() {
+  const t = data[await getLandingLocale()]
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white" suppressHydrationWarning>
-      <header className="sticky top-0 z-50 w-full bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50 shadow-lg">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 lg:h-20 items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg">
-                  <Code className="h-6 w-6" />
-                </div>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                REVOSSO
-              </span>
-            </Link>
-            <Link href="/" className="flex items-center gap-2 text-slate-300 hover:text-blue-400 font-medium transition-colors text-sm">
-              <ArrowLeft className="h-4 w-4" />
-              {t.backToHome}
-            </Link>
+    <LandingSiteShell>
+      <LegalPage title={t.title} updated={`${t.lastUpdated} ${lastUpdated}`}>
+        <LegalSection title={t.s1Title}>
+          <p>{t.s1p1}</p>
+        </LegalSection>
+        <LegalSection title={t.s2Title}>
+          <LegalSubheading>{t.s2_1Title}</LegalSubheading>
+          <p>{t.s2_1p1}</p>
+          <div className="overflow-x-auto rounded-rv-frame border border-rv-border bg-rv-surface">
+            <table className={tableClass}>
+              <thead>
+                <tr>
+                  <th className={headCellClass}>{t.cookieTableCookie}</th>
+                  <th className={headCellClass}>{t.cookieTablePurpose}</th>
+                  <th className={headCellClass}>{t.cookieTableDuration}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="p-4 font-medium">revosso-session</td>
+                  <td className="p-4">{t.cookieSessionPurpose}</td>
+                  <td className="p-4">{t.cookieSessionDuration}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-      </header>
-
-      <main className="flex-1">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl py-16 lg:py-24">
-          <div className="space-y-4 mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white">{t.title}</h1>
-            <p className="text-slate-400 text-sm">{t.lastUpdated} {lastUpdated}</p>
+          <LegalSubheading className="pt-2">{t.s2_2Title}</LegalSubheading>
+          <p>{t.s2_2p1}</p>
+          <div className="overflow-x-auto rounded-rv-frame border border-rv-border bg-rv-surface">
+            <table className={tableClass}>
+              <thead>
+                <tr>
+                  <th className={headCellClass}>{t.analyticsTableService}</th>
+                  <th className={headCellClass}>{t.analyticsTablePurpose}</th>
+                  <th className={headCellClass}>{t.analyticsTablePolicy}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="p-4">{t.analyticsServiceName}</td>
+                  <td className="p-4">{t.analyticsServicePurpose}</td>
+                  <td className="p-4 text-rv-muted">—</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </LegalSection>
+        <LegalSection title={t.s3Title}>
+          <p>{t.s3Intro}</p>
+          <LegalList>{(t.s3Items).map((item) => <li key={item}>{item}</li>)}</LegalList>
+        </LegalSection>
+        <LegalSection title={t.s4Title}>
+          <p>{t.s4p1}</p>
+          <p>{t.s4p2}</p>
+          <LegalList>
+            <li>
+              <strong className="font-semibold">Chrome:</strong> {t.s4Chrome}
+            </li>
+            <li>
+              <strong className="font-semibold">Firefox:</strong> {t.s4Firefox}
+            </li>
+            <li>
+              <strong className="font-semibold">Safari:</strong> {t.s4Safari}
+            </li>
+            <li>
+              <strong className="font-semibold">Edge:</strong> {t.s4Edge}
+            </li>
+          </LegalList>
+        </LegalSection>
+        <LegalSection title={t.s5Title}>
+          <p>{t.s5p1}</p>
+        </LegalSection>
+        <LegalSection title={t.s6Title}>
+          <p>{t.s6p1}</p>
+          <ContactBox company={t.s6Company} emailLabel={t.s6Email} websiteLabel={t.s6Website} />
+        </LegalSection>
+      </LegalPage>
+    </LandingSiteShell>
+  )
+}
 
-          <div className="space-y-10 text-slate-300 leading-relaxed">
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s1Title}</h2>
-              <p>{t.s1p1}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s2Title}</h2>
-
-              <h3 className="text-lg font-medium text-slate-200">{t.s2_1Title}</h3>
-              <p>{t.s2_1p1}</p>
-              <div className="bg-slate-800/50 rounded-xl overflow-hidden">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-slate-700">
-                      <th className="text-left p-4 text-slate-200 font-medium">{t.cookieTableCookie}</th>
-                      <th className="text-left p-4 text-slate-200 font-medium">{t.cookieTablePurpose}</th>
-                      <th className="text-left p-4 text-slate-200 font-medium">{t.cookieTableDuration}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-700/50">
-                    <tr>
-                      <td className="p-4 font-medium text-blue-300">revosso-session</td>
-                      <td className="p-4">{t.cookieSessionPurpose}</td>
-                      <td className="p-4">{t.cookieSessionDuration}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h3 className="text-lg font-medium text-slate-200 mt-6">{t.s2_2Title}</h3>
-              <p>{t.s2_2p1}</p>
-              <div className="bg-slate-800/50 rounded-xl overflow-hidden">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-slate-700">
-                      <th className="text-left p-4 text-slate-200 font-medium">{t.analyticsTableService}</th>
-                      <th className="text-left p-4 text-slate-200 font-medium">{t.analyticsTablePurpose}</th>
-                      <th className="text-left p-4 text-slate-200 font-medium">{t.analyticsTablePolicy}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="p-4">{t.analyticsServiceName}</td>
-                      <td className="p-4">{t.analyticsServicePurpose}</td>
-                      <td className="p-4 text-slate-400 text-xs">—</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s3Title}</h2>
-              <p>{t.s3Intro}</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.s3Items.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s4Title}</h2>
-              <p>{t.s4p1}</p>
-              <p>{t.s4p2}</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                <li><strong className="text-slate-200">Chrome:</strong> {t.s4Chrome}</li>
-                <li><strong className="text-slate-200">Firefox:</strong> {t.s4Firefox}</li>
-                <li><strong className="text-slate-200">Safari:</strong> {t.s4Safari}</li>
-                <li><strong className="text-slate-200">Edge:</strong> {t.s4Edge}</li>
-              </ul>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s5Title}</h2>
-              <p>{t.s5p1}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s6Title}</h2>
-              <p>{t.s6p1}</p>
-              <div className="bg-slate-800/50 rounded-xl p-6 space-y-2 text-sm">
-                <p className="font-semibold text-white">{t.s6Company}</p>
-                <p>
-                  {t.s6Email}{" "}
-                  <a href="mailto:contact@revosso.com" className="text-blue-400 hover:text-blue-300 transition-colors">
-                    contact@revosso.com
-                  </a>
-                </p>
-                <p>{t.s6Website} <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">revosso.com</Link></p>
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-
-      <footer className="bg-slate-950 border-t border-slate-800 py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-400 text-sm text-center md:text-left">© {year} Revosso. {t.allRightsReserved}</p>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-slate-400 text-sm">
-            <Link href="/privacy" className="hover:text-white transition-colors">{t.footerPrivacy}</Link>
-            <span>·</span>
-            <Link href="/terms" className="hover:text-white transition-colors">{t.footerTerms}</Link>
-            <span>·</span>
-            <Link href="/cookies" className="hover:text-white transition-colors">{t.footerCookies}</Link>
-            <span>·</span>
-            <Link href="/security" className="hover:text-white transition-colors">{t.footerSecurity}</Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+function ContactBox({ company, emailLabel, websiteLabel }: { company: string; emailLabel: string; websiteLabel: string }) {
+  return (
+    <LegalBox>
+      <p className="font-semibold">{company}</p>
+      <p>
+        {emailLabel}{" "}
+        <a href="mailto:contact@revosso.com" className={legalLinkClass}>
+          contact@revosso.com
+        </a>
+      </p>
+      <p>
+        {websiteLabel}{" "}
+        <Link href="/" className={legalLinkClass}>
+          revosso.com
+        </Link>
+      </p>
+    </LegalBox>
   )
 }

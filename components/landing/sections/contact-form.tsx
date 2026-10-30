@@ -45,7 +45,7 @@ function validate(data: FormData, messages: ContactFormProps["copy"]["validation
 }
 
 const inputClass =
-  "block w-full rounded-rv border border-rv-border bg-rv-surface px-3.5 text-base text-rv-text placeholder:text-rv-muted/70 transition-colors focus-visible:border-rv-accent focus-visible:outline-offset-0 aria-[invalid=true]:border-red-500"
+  "block w-full rounded-rv border border-rv-border bg-rv-surface-raised px-3.5 text-base text-rv-text placeholder:text-rv-muted transition-colors focus-visible:border-rv-accent focus-visible:outline-offset-0 aria-[invalid=true]:border-red-500"
 
 export function ContactForm({ copy, locale }: ContactFormProps) {
   const formId = useId()
@@ -233,7 +233,7 @@ function FormField({ id, label, error, errorId, children }: FormFieldProps) {
       </label>
       {children}
       {error ? (
-        <p id={errorId} className="text-sm text-red-600 dark:text-red-400">
+        <p id={errorId} className="text-sm text-red-700 dark:text-red-400">
           {error}
         </p>
       ) : null}

@@ -9,7 +9,7 @@ export function LandingThemeToggle({ label }: { label: string }) {
   return (
     <button
       type="button"
-      className="relative inline-flex size-11 items-center justify-center rounded-rv text-rv-muted transition-colors hover:bg-rv-surface-2 hover:text-rv-text"
+      className="relative inline-flex size-11 items-center justify-center rounded-rv text-rv-muted transition-colors hover:bg-rv-text/5 hover:text-rv-text"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       aria-label={label}
     >

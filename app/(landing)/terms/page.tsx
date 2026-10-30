@@ -1,14 +1,12 @@
-"use client"
-
-import { useState, useEffect } from "react"
+import type { Metadata } from "next"
 import Link from "next/link"
-import { resolveInitialLandingLocale } from "@/lib/landing-locale"
-import { Code, ArrowLeft } from "lucide-react"
+import { getLandingLocale } from "@/lib/landing-locale.server"
+import { LandingSiteShell } from "@/components/landing/landing-site-shell"
+import { LegalBox, LegalList, LegalPage, LegalSection, legalLinkClass } from "@/components/landing/legal"
 
 type Locale = "en" | "fr" | "pt-BR" | "es"
 
 const data: Record<Locale, {
-  backToHome: string
   title: string
   lastUpdated: string
   s1Title: string
@@ -41,14 +39,8 @@ const data: Record<Locale, {
   s10Company: string
   s10Email: string
   s10Website: string
-  allRightsReserved: string
-  footerPrivacy: string
-  footerTerms: string
-  footerCookies: string
-  footerSecurity: string
 }> = {
   en: {
-    backToHome: "Back to Home",
     title: "Terms of Service",
     lastUpdated: "Last updated:",
     s1Title: "1. Acceptance of Terms",
@@ -88,14 +80,8 @@ const data: Record<Locale, {
     s10Company: "Revosso",
     s10Email: "Email:",
     s10Website: "Website:",
-    allRightsReserved: "All rights reserved.",
-    footerPrivacy: "Privacy",
-    footerTerms: "Terms",
-    footerCookies: "Cookies",
-    footerSecurity: "Security",
   },
   fr: {
-    backToHome: "Retour à l'accueil",
     title: "Conditions d'Utilisation",
     lastUpdated: "Dernière mise à jour :",
     s1Title: "1. Acceptation des Conditions",
@@ -135,14 +121,8 @@ const data: Record<Locale, {
     s10Company: "Revosso",
     s10Email: "Courriel :",
     s10Website: "Site web :",
-    allRightsReserved: "Tous droits réservés.",
-    footerPrivacy: "Confidentialité",
-    footerTerms: "Conditions",
-    footerCookies: "Cookies",
-    footerSecurity: "Sécurité",
   },
   "pt-BR": {
-    backToHome: "Voltar ao início",
     title: "Termos de Serviço",
     lastUpdated: "Última atualização:",
     s1Title: "1. Aceitação dos Termos",
@@ -182,14 +162,8 @@ const data: Record<Locale, {
     s10Company: "Revosso",
     s10Email: "E-mail:",
     s10Website: "Site:",
-    allRightsReserved: "Todos os direitos reservados.",
-    footerPrivacy: "Privacidade",
-    footerTerms: "Termos",
-    footerCookies: "Cookies",
-    footerSecurity: "Segurança",
   },
   es: {
-    backToHome: "Volver al inicio",
     title: "Términos de Servicio",
     lastUpdated: "Última actualización:",
     s1Title: "1. Aceptación de los Términos",
@@ -229,154 +203,86 @@ const data: Record<Locale, {
     s10Company: "Revosso",
     s10Email: "Correo electrónico:",
     s10Website: "Sitio web:",
-    allRightsReserved: "Todos los derechos reservados.",
-    footerPrivacy: "Privacidad",
-    footerTerms: "Términos",
-    footerCookies: "Cookies",
-    footerSecurity: "Seguridad",
   },
 }
 
 const lastUpdated = "March 2026"
 
-export default function TermsPage() {
-  const [locale, setLocale] = useState<Locale>("en")
+export async function generateMetadata(): Promise<Metadata> {
+  const t = data[await getLandingLocale()]
+  return { title: t.title, alternates: { canonical: "/terms" } }
+}
 
-  useEffect(() => {
-    let cancelled = false
-    resolveInitialLandingLocale().then((l) => {
-      if (!cancelled) setLocale(l as Locale)
-    })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const t = data[locale]
-  const year = new Date().getFullYear()
+export default async function TermsPage() {
+  const t = data[await getLandingLocale()]
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white" suppressHydrationWarning>
-      <header className="sticky top-0 z-50 w-full bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50 shadow-lg">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 lg:h-20 items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg">
-                  <Code className="h-6 w-6" />
-                </div>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                REVOSSO
-              </span>
+    <LandingSiteShell>
+      <LegalPage title={t.title} updated={`${t.lastUpdated} ${lastUpdated}`}>
+        <LegalSection title={t.s1Title}>
+          <p>{t.s1p1}</p>
+          <p>{t.s1p2}</p>
+        </LegalSection>
+        <LegalSection title={t.s2Title}>
+          <p>{t.s2p1}</p>
+          <p>{t.s2p2}</p>
+        </LegalSection>
+        <LegalSection title={t.s3Title}>
+          <p>{t.s3p1}</p>
+          <p>{t.s3p2}</p>
+        </LegalSection>
+        <LegalSection title={t.s4Title}>
+          <p>{t.s4Intro}</p>
+          <LegalList>{(t.s4Items).map((item) => <li key={item}>{item}</li>)}</LegalList>
+        </LegalSection>
+        <LegalSection title={t.s5Title}>
+          <p>
+            {t.s5p1}{" "}
+            <Link href="/privacy" className={legalLinkClass}>
+              {t.s5PrivacyLink}
             </Link>
-            <Link href="/" className="flex items-center gap-2 text-slate-300 hover:text-blue-400 font-medium transition-colors text-sm">
-              <ArrowLeft className="h-4 w-4" />
-              {t.backToHome}
-            </Link>
-          </div>
-        </div>
-      </header>
+            .
+          </p>
+          <p>{t.s5p2}</p>
+        </LegalSection>
+        <LegalSection title={t.s6Title}>
+          <p>{t.s6p1}</p>
+          <p>{t.s6p2}</p>
+        </LegalSection>
+        <LegalSection title={t.s7Title}>
+          <p>{t.s7p1}</p>
+        </LegalSection>
+        <LegalSection title={t.s8Title}>
+          <p>{t.s8p1}</p>
+        </LegalSection>
+        <LegalSection title={t.s9Title}>
+          <p>{t.s9p1}</p>
+        </LegalSection>
+        <LegalSection title={t.s10Title}>
+          <p>{t.s10p1}</p>
+          <ContactBox company={t.s10Company} emailLabel={t.s10Email} websiteLabel={t.s10Website} />
+        </LegalSection>
+      </LegalPage>
+    </LandingSiteShell>
+  )
+}
 
-      <main className="flex-1">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl py-16 lg:py-24">
-          <div className="space-y-4 mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white">{t.title}</h1>
-            <p className="text-slate-400 text-sm">{t.lastUpdated} {lastUpdated}</p>
-          </div>
-
-          <div className="space-y-10 text-slate-300 leading-relaxed">
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s1Title}</h2>
-              <p>{t.s1p1}</p>
-              <p>{t.s1p2}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s2Title}</h2>
-              <p>{t.s2p1}</p>
-              <p>{t.s2p2}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s3Title}</h2>
-              <p>{t.s3p1}</p>
-              <p>{t.s3p2}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s4Title}</h2>
-              <p>{t.s4Intro}</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.s4Items.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s5Title}</h2>
-              <p>
-                {t.s5p1}{" "}
-                <Link href="/privacy" className="text-blue-400 hover:text-blue-300 transition-colors">
-                  {t.s5PrivacyLink}
-                </Link>.
-              </p>
-              <p>{t.s5p2}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s6Title}</h2>
-              <p>{t.s6p1}</p>
-              <p>{t.s6p2}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s7Title}</h2>
-              <p>{t.s7p1}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s8Title}</h2>
-              <p>{t.s8p1}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s9Title}</h2>
-              <p>{t.s9p1}</p>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.s10Title}</h2>
-              <p>{t.s10p1}</p>
-              <div className="bg-slate-800/50 rounded-xl p-6 space-y-2 text-sm">
-                <p className="font-semibold text-white">{t.s10Company}</p>
-                <p>
-                  {t.s10Email}{" "}
-                  <a href="mailto:contact@revosso.com" className="text-blue-400 hover:text-blue-300 transition-colors">
-                    contact@revosso.com
-                  </a>
-                </p>
-                <p>{t.s10Website} <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">revosso.com</Link></p>
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-
-      <footer className="bg-slate-950 border-t border-slate-800 py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-400 text-sm text-center md:text-left">© {year} Revosso. {t.allRightsReserved}</p>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-slate-400 text-sm">
-            <Link href="/privacy" className="hover:text-white transition-colors">{t.footerPrivacy}</Link>
-            <span>·</span>
-            <Link href="/terms" className="hover:text-white transition-colors">{t.footerTerms}</Link>
-            <span>·</span>
-            <Link href="/cookies" className="hover:text-white transition-colors">{t.footerCookies}</Link>
-            <span>·</span>
-            <Link href="/security" className="hover:text-white transition-colors">{t.footerSecurity}</Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+function ContactBox({ company, emailLabel, websiteLabel }: { company: string; emailLabel: string; websiteLabel: string }) {
+  return (
+    <LegalBox>
+      <p className="font-semibold">{company}</p>
+      <p>
+        {emailLabel}{" "}
+        <a href="mailto:contact@revosso.com" className={legalLinkClass}>
+          contact@revosso.com
+        </a>
+      </p>
+      <p>
+        {websiteLabel}{" "}
+        <Link href="/" className={legalLinkClass}>
+          revosso.com
+        </Link>
+      </p>
+    </LegalBox>
   )
 }

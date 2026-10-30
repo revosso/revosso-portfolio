@@ -117,31 +117,49 @@ html[data-scroll-locked] body {
 /* Values are RGB channels so Tailwind opacity modifiers work.                 */
 /* ------------------------------------------------------------------------ */
 @layer base {
+  /*
+   * Roles: bg = page; surface = cards and alternate sections; surface-raised = inputs
+   * and the mega-menu panel; chrome = header, menus and screenshot frames (raised in
+   * dark, surface in light, which keeps pure white off page-level areas).
+   */
   :root {
-    --rv-bg: 250 249 247;
-    --rv-surface: 255 255 255;
-    --rv-surface-2: 242 240 236;
-    --rv-border: 228 225 219;
-    --rv-text: 28 27 25;
-    --rv-muted: 94 90 83;
-    --rv-accent: 37 84 199;
-    --rv-accent-fill: 37 84 199;
-    --rv-accent-fill-hover: 30 68 166;
-    --rv-shadow-frame: 0 1px 2px rgb(28 27 25 / 0.06), 0 16px 32px -20px rgb(28 27 25 / 0.28);
+    --rv-bg: 243 245 249; /* #F3F5F9 */
+    --rv-surface: 250 251 253; /* #FAFBFD */
+    --rv-surface-raised: 255 255 255; /* #FFFFFF */
+    --rv-chrome: 250 251 253;
+    --rv-border: 222 227 236; /* #DEE3EC */
+    --rv-text: 18 24 38; /* #121826 */
+    --rv-muted: 74 84 104; /* #4A5468 */
+    --rv-accent: 29 79 208; /* #1D4FD0 */
+    --rv-accent-fill: 29 79 208; /* #1D4FD0 */
+    --rv-accent-fill-hover: 24 66 176; /* #1842B0 */
+    --rv-on-accent: 255 255 255;
+    --rv-logo-tile: 255 255 255;
+    --rv-bezel: 18 24 38;
+    --rv-scrim: rgb(18 24 38 / 0.3);
+    --rv-band-image: none;
+    --rv-shadow-frame: 0 1px 2px rgb(18 24 38 / 0.08), 0 16px 32px -16px rgb(18 24 38 / 0.08);
   }
 
   .dark {
-    --rv-bg: 15 15 14;
-    --rv-surface: 23 23 21;
-    --rv-surface-2: 31 30 28;
-    --rv-border: 46 45 41;
-    --rv-text: 237 235 230;
-    --rv-muted: 164 160 151;
-    /* Lighter text accent keeps AA on the near-black base; fills keep white text at AA. */
-    --rv-accent: 138 168 255;
-    --rv-accent-fill: 37 84 199;
-    --rv-accent-fill-hover: 52 99 214;
-    --rv-shadow-frame: 0 1px 2px rgb(0 0 0 / 0.5), 0 20px 40px -20px rgb(0 0 0 / 0.8);
+    --rv-bg: 17 23 41; /* #111729 */
+    --rv-surface: 26 33 51; /* #1A2133 */
+    --rv-surface-raised: 32 40 57; /* #202839 */
+    --rv-chrome: 32 40 57;
+    --rv-border: 43 52 72; /* #2B3448 */
+    --rv-text: 238 241 247; /* #EEF1F7 */
+    --rv-muted: 163 172 191; /* #A3ACBF */
+    /* Text links and active states only. Never a button background. */
+    --rv-accent: 91 155 255; /* #5B9BFF */
+    /* Button backgrounds only (white text). Never used as text on dark. */
+    --rv-accent-fill: 47 107 234; /* #2F6BEA */
+    --rv-accent-fill-hover: 38 92 206; /* #265CCE */
+    --rv-on-accent: 255 255 255;
+    --rv-logo-tile: 255 255 255;
+    --rv-bezel: 43 52 72;
+    --rv-scrim: rgb(8 12 24 / 0.6);
+    --rv-band-image: linear-gradient(135deg, #1d2536 0%, #202839 100%);
+    --rv-shadow-frame: 0 1px 2px rgb(8 12 24 / 0.35), 0 20px 40px -20px rgb(8 12 24 / 0.35);
   }
 
   .rv-site,
@@ -215,7 +233,12 @@ html[data-scroll-locked] body {
   }
 
   .rv-skip-link {
-    @apply fixed left-4 top-4 z-[100] -translate-y-24 rounded-rv bg-rv-accent-fill px-4 py-3 text-sm font-medium text-white transition-transform focus-visible:translate-y-0;
+    @apply fixed left-4 top-4 z-[100] -translate-y-24 rounded-rv bg-rv-accent-fill px-4 py-3 text-sm font-medium text-rv-on-accent transition-transform focus-visible:translate-y-0;
+  }
+
+  /* The one large header band per page. Dark only; light keeps the page background. */
+  .rv-band {
+    background-image: var(--rv-band-image);
   }
 }
 

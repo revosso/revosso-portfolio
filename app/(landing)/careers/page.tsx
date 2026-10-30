@@ -64,7 +64,7 @@ export default async function CareersPage() {
                   return (
                     <li
                       key={job.slug}
-                      className="group relative grid gap-1.5 rounded-rv border-t border-rv-border px-3 py-5 transition-colors hover:bg-rv-surface-2 has-[a:focus-visible]:outline has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-rv-accent md:-mx-3 md:grid-cols-[1fr_auto] md:items-center md:gap-8"
+                      className="group relative grid gap-1.5 rounded-rv border-t border-rv-border px-3 py-5 transition-colors hover:bg-rv-text/5 has-[a:focus-visible]:outline has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-rv-accent md:-mx-3 md:grid-cols-[1fr_auto] md:items-center md:gap-8"
                     >
                       <div>
                         <h3 className="text-lg font-semibold">

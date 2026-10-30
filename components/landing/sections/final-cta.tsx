@@ -19,7 +19,7 @@ export function FinalCtaSection({ copy, formCopy, footer, a11y, locale }: FinalC
       id="contact"
       data-cta-zone=""
       aria-labelledby="contact-heading"
-      className="rv-section border-t border-rv-border bg-rv-surface-2/60"
+      className="rv-section border-t border-rv-border bg-rv-surface"
     >
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-5">

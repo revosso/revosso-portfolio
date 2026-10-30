@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <LandingSiteShell>
       <main id="main-content" className="flex-1">
-        <section aria-labelledby="product-title" className="border-b border-rv-border">
+        <section aria-labelledby="product-title" className="rv-band border-b border-rv-border">
           <Container className="pb-12 pt-10 md:pb-16 md:pt-14">
             <nav aria-label={page.breadcrumb}>
               <ol className="flex items-center gap-1.5 text-sm text-rv-muted">
@@ -133,7 +133,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </Container>
         </section>
 
-        <section aria-label={page.gallery} className="border-b border-rv-border bg-rv-surface-2/60">
+        <section aria-label={page.gallery} className="border-b border-rv-border bg-rv-surface">
           <Container className="grid items-end gap-8 py-12 md:py-16 lg:grid-cols-12">
             <BrowserFrame host={product.host} className="lg:col-span-9">
               <Screenshot
@@ -206,7 +206,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </Container>
         </section>
 
-        <section aria-labelledby="cta-heading" data-cta-zone="" className="border-t border-rv-border bg-rv-surface-2/60">
+        <section aria-labelledby="cta-heading" data-cta-zone="" className="border-t border-rv-border bg-rv-surface">
           <Container className="flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between md:py-20">
             <h2 id="cta-heading" className="rv-h2 max-w-xl text-balance">
               {page.ctaTitle}

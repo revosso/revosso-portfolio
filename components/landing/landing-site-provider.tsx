@@ -3,7 +3,9 @@
 import type React from "react"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { useTheme } from "next-themes"
 import { toast } from "@/hooks/use-toast"
+import { THEME_COLORS } from "@/lib/site"
 import {
   LANDING_LOCALE_STORAGE_KEY,
   isLandingLocale,
@@ -20,6 +22,15 @@ type LandingSiteProviderProps = {
 /** Client-side effects shared by every marketing page. Copy is rendered on the server. */
 export function LandingSiteProvider({ locale, children }: LandingSiteProviderProps) {
   const router = useRouter()
+  const { resolvedTheme } = useTheme()
+
+  // The meta tags follow the OS scheme; match them to the theme the visitor actually picked.
+  useEffect(() => {
+    if (resolvedTheme !== "light" && resolvedTheme !== "dark") return
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.setAttribute("content", THEME_COLORS[resolvedTheme])
+    })
+  }, [resolvedTheme])
 
   // Visitors who picked a language before the cookie existed only have it in localStorage.
   useEffect(() => {

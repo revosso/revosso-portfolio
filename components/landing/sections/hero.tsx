@@ -15,7 +15,7 @@ type HeroSectionProps = {
 
 export function HeroSection({ copy, a11y, locale }: HeroSectionProps) {
   return (
-    <section id="top" data-cta-zone="" aria-labelledby="hero-heading" className="border-b border-rv-border">
+    <section id="top" data-cta-zone="" aria-labelledby="hero-heading" className="rv-band border-b border-rv-border">
       <Container className="grid gap-10 pb-16 pt-8 md:pt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)] lg:items-center lg:gap-14 lg:pb-20 lg:pt-16">
         <div>
           <p className="rv-eyebrow">{copy.eyebrow}</p>

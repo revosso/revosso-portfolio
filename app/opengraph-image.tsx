@@ -5,6 +5,16 @@ export const alt = SITE_TITLE
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
+/** Dark theme tokens (see `--rv-*` in app/globals.css). */
+const COLORS = {
+  bg: "#111729",
+  border: "#2B3448",
+  text: "#EEF1F7",
+  muted: "#A3ACBF",
+  accentFill: "#2F6BEA",
+  onAccent: "#FFFFFF",
+}
+
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
@@ -16,8 +26,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#FAF9F7",
-          color: "#1C1B19",
+          background: COLORS.bg,
+          color: COLORS.text,
           fontFamily: "sans-serif",
         }}
       >
@@ -27,8 +37,8 @@ export default function OpenGraphImage() {
               width: 44,
               height: 44,
               borderRadius: 6,
-              background: "#2554C7",
-              color: "#FFFFFF",
+              background: COLORS.accentFill,
+              color: COLORS.onAccent,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -42,7 +52,7 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 20, color: "#5E5A53", fontWeight: 500, letterSpacing: 2, textTransform: "uppercase" }}>
+          <div style={{ fontSize: 20, color: COLORS.muted, fontWeight: 500, letterSpacing: 2, textTransform: "uppercase" }}>
             Digital agency and software company
           </div>
           <div style={{ fontSize: 62, fontWeight: 600, lineHeight: 1.08, letterSpacing: -2, maxWidth: 980 }}>
@@ -54,10 +64,10 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            borderTop: "1px solid #E4E1DB",
+            borderTop: `1px solid ${COLORS.border}`,
             paddingTop: 24,
             fontSize: 22,
-            color: "#5E5A53",
+            color: COLORS.muted,
           }}
         >
           <div style={{ display: "flex" }}>Revofin · RevoMaket · Rechajem · Revokonek</div>

@@ -26,7 +26,7 @@ export default async function ProductsPage() {
   return (
     <LandingSiteShell>
       <main id="main-content" className="flex-1">
-        <section aria-labelledby="products-title" className="border-b border-rv-border">
+        <section aria-labelledby="products-title" className="rv-band border-b border-rv-border">
           <Container className="pb-16 pt-12 md:pb-20 md:pt-20">
             <PageHeader id="products-title" eyebrow={page.eyebrow} title={page.title} intro={page.intro} />
           </Container>

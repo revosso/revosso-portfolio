@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 export function BrandMark({ className }: { className?: string }) {
   return (
     <span className={cn("flex items-center gap-2.5", className)} aria-hidden="true">
-      <span className="flex size-8 items-center justify-center rounded-rv bg-rv-accent-fill text-white">
+      <span className="flex size-8 items-center justify-center rounded-rv bg-rv-accent-fill text-rv-on-accent">
         <Code className="size-[18px]" strokeWidth={1.75} />
       </span>
       <span className="text-[15px] font-semibold tracking-[0.14em]">REVOSSO</span>

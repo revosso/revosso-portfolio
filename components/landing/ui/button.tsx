@@ -7,7 +7,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-rv-accent-fill text-white hover:bg-rv-accent-fill-hover",
+        primary: "bg-rv-accent-fill text-rv-on-accent hover:bg-rv-accent-fill-hover",
         outline: "border border-rv-text/20 text-rv-text hover:border-rv-text/45 hover:bg-rv-text/[0.03]",
       },
       size: {

@@ -38,8 +38,8 @@ type BrowserFrameProps = {
 
 export function BrowserFrame({ host, children, className }: BrowserFrameProps) {
   return (
-    <div className={cn("overflow-hidden rounded-rv-frame border border-rv-border bg-rv-surface shadow-rv-frame", className)}>
-      <div className="flex items-center gap-3 border-b border-rv-border bg-rv-surface-2 px-3 py-2" aria-hidden="true">
+    <div className={cn("overflow-hidden rounded-rv-frame border border-rv-border bg-rv-chrome shadow-rv-frame", className)}>
+      <div className="flex items-center gap-3 border-b border-rv-border bg-rv-chrome px-3 py-2" aria-hidden="true">
         <div className="flex gap-1.5">
           <span className="size-2 rounded-full bg-rv-text/15" />
           <span className="size-2 rounded-full bg-rv-text/15" />
@@ -56,7 +56,7 @@ export function PhoneFrame({ children, className }: { children: ReactNode; class
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[22px] border-[5px] border-rv-text/90 bg-rv-text shadow-rv-frame dark:border-[#3a3935]",
+        "overflow-hidden rounded-[22px] border-[5px] border-rv-bezel bg-rv-bezel shadow-rv-frame",
         className,
       )}
     >

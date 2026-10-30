@@ -60,10 +60,10 @@ export function ProductMenuCard({ product, copy, newTabLabel, onNavigate }: Prod
   return (
     <article
       data-menu-card=""
-      className="flex h-full flex-col rounded-rv-frame border border-rv-border bg-rv-surface p-5 transition-colors hover:border-rv-text/25 hover:bg-rv-surface-2 focus-within:border-rv-text/25"
+      className="flex h-full flex-col rounded-rv-frame border border-rv-border bg-rv-surface p-5 transition-colors hover:border-rv-text/25 hover:bg-rv-text/5 focus-within:border-rv-text/25"
     >
       <div className="flex items-center gap-3">
-        <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-rv border border-rv-border bg-white">
+        <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-rv border border-rv-border bg-rv-logo-tile">
           <Image src={product.logo} alt="" width={40} height={40} className="size-10 object-contain" />
         </span>
         <h3 className="text-base font-semibold">{product.name}</h3>
@@ -266,7 +266,7 @@ export function ProductsMegaMenu({ label, copy, products, services, newTabLabel,
           <div
             aria-hidden="true"
             onClick={() => close(true)}
-            className="fixed inset-x-0 bottom-0 top-[73px] bg-black/25 animate-in fade-in-0 duration-150 motion-reduce:animate-none dark:bg-black/50"
+            className="fixed inset-x-0 bottom-0 top-[73px] bg-rv-scrim animate-in fade-in-0 duration-150 motion-reduce:animate-none"
           />
           <div
             ref={panelRef}
@@ -275,7 +275,7 @@ export function ProductsMegaMenu({ label, copy, products, services, newTabLabel,
             aria-label={copy.label}
             onPointerEnter={onHoverEnter}
             onPointerLeave={onHoverLeave}
-            className="absolute inset-x-0 top-full max-h-[calc(100dvh-73px)] overflow-y-auto border-b border-rv-border bg-rv-bg shadow-rv-frame animate-in fade-in-0 slide-in-from-top-1 duration-150 motion-reduce:animate-none"
+            className="absolute inset-x-0 top-full max-h-[calc(100dvh-73px)] overflow-y-auto border-b border-rv-border bg-rv-surface-raised shadow-rv-frame animate-in fade-in-0 slide-in-from-top-1 duration-150 motion-reduce:animate-none"
           >
             <div className="rv-container py-6">
               <div className="flex items-center justify-between gap-6 border-b border-rv-border pb-4">
@@ -290,7 +290,7 @@ export function ProductsMegaMenu({ label, copy, products, services, newTabLabel,
                       aria-controls={tabPanelId(name)}
                       tabIndex={tab === name ? 0 : -1}
                       onClick={() => setTab(name)}
-                      className="min-h-10 rounded-rv px-3.5 text-sm font-medium text-rv-muted transition-colors hover:text-rv-text aria-selected:bg-rv-surface-2 aria-selected:text-rv-text"
+                      className="min-h-10 rounded-rv px-3.5 text-sm font-medium text-rv-muted transition-colors hover:text-rv-text aria-selected:bg-rv-text/[0.07] aria-selected:text-rv-text"
                     >
                       {name === "products" ? copy.productsTab : copy.servicesTab}
                     </button>
@@ -305,7 +305,7 @@ export function ProductsMegaMenu({ label, copy, products, services, newTabLabel,
                     type="button"
                     aria-label={copy.close}
                     onClick={() => close(true)}
-                    className="inline-flex size-10 items-center justify-center rounded-rv text-rv-muted transition-colors hover:bg-rv-surface-2 hover:text-rv-text"
+                    className="inline-flex size-10 items-center justify-center rounded-rv text-rv-muted transition-colors hover:bg-rv-text/5 hover:text-rv-text"
                   >
                     <X className="size-5" aria-hidden="true" strokeWidth={1.5} />
                   </button>
@@ -336,7 +336,7 @@ export function ProductsMegaMenu({ label, copy, products, services, newTabLabel,
                                 "flex min-h-10 w-full items-center justify-between rounded-full px-4 text-left text-sm transition-colors",
                                 selected
                                   ? "bg-rv-accent/10 font-medium text-rv-accent"
-                                  : "text-rv-muted hover:bg-rv-surface-2 hover:text-rv-text",
+                                  : "text-rv-muted hover:bg-rv-text/5 hover:text-rv-text",
                               )}
                             >
                               {copy.categories[id]}
@@ -375,7 +375,7 @@ export function ProductsMegaMenu({ label, copy, products, services, newTabLabel,
                         <Link
                           href="/#services"
                           onClick={() => close(false)}
-                          className="block h-full rounded-rv-frame border border-rv-border bg-rv-surface p-5 transition-colors hover:border-rv-text/25 hover:bg-rv-surface-2"
+                          className="block h-full rounded-rv-frame border border-rv-border bg-rv-surface p-5 transition-colors hover:border-rv-text/25 hover:bg-rv-text/5"
                         >
                           <span className="block text-base font-semibold">{service.name}</span>
                           <span className="mt-2 block text-sm leading-relaxed text-rv-muted">{service.description}</span>

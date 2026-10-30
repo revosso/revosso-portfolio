@@ -171,7 +171,7 @@ export function LandingHeader({ nav, a11y, megaMenu, locale, products, services 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b bg-rv-bg transition-colors duration-200",
+        "sticky top-0 z-50 w-full border-b bg-rv-chrome transition-colors duration-200",
         isScrolled || menuOpen ? "border-rv-border" : "border-transparent",
       )}
     >
@@ -213,13 +213,13 @@ export function LandingHeader({ nav, a11y, megaMenu, locale, products, services 
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger
               aria-label={a11y.changeLanguage}
-              className="inline-flex min-h-11 items-center gap-1.5 rounded-rv px-3 text-sm text-rv-muted outline-none transition-colors hover:bg-rv-surface-2 hover:text-rv-text data-[state=open]:text-rv-text"
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-rv px-3 text-sm text-rv-muted outline-none transition-colors hover:bg-rv-text/5 hover:text-rv-text data-[state=open]:text-rv-text"
             >
               <Globe className="size-4" aria-hidden="true" strokeWidth={1.75} />
               {LOCALE_LABELS[locale]}
               <ChevronDown className="size-3 opacity-70" aria-hidden="true" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="rv-portal min-w-[7rem] border-rv-border bg-rv-surface text-rv-text">
+            <DropdownMenuContent align="end" className="rv-portal min-w-[7rem] border-rv-border bg-rv-chrome text-rv-text">
               <DropdownMenuRadioGroup value={locale} onValueChange={changeLocale}>
                 {LANDING_LOCALES.map((l) => (
                   <DropdownMenuRadioItem key={l} value={l} lang={l} className="min-h-10 cursor-pointer">
@@ -244,16 +244,16 @@ export function LandingHeader({ nav, a11y, megaMenu, locale, products, services 
         <Dialog.Root open={menuOpen} onOpenChange={onDrawerOpenChange}>
           <Dialog.Trigger
             aria-label={a11y.openMenu}
-            className="inline-flex size-11 items-center justify-center rounded-rv text-rv-text hover:bg-rv-surface-2 xl:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-rv text-rv-text hover:bg-rv-text/5 xl:hidden"
           >
             <Menu className="size-6" aria-hidden="true" strokeWidth={1.5} />
           </Dialog.Trigger>
           <Dialog.Portal>
-            <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/40 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:animate-none xl:hidden" />
+            <Dialog.Overlay className="fixed inset-0 z-[60] bg-rv-scrim data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:animate-none xl:hidden" />
             <Dialog.Content
               aria-describedby={undefined}
               onCloseAutoFocus={scrollToPendingAnchor}
-              className="rv-portal fixed inset-y-0 right-0 z-[60] flex h-dvh w-full flex-col overflow-y-auto border-l border-rv-border bg-rv-bg px-4 pb-6 text-rv-text data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:animate-in data-[state=open]:slide-in-from-right motion-reduce:animate-none sm:max-w-md sm:px-6 xl:hidden"
+              className="rv-portal fixed inset-y-0 right-0 z-[60] flex h-dvh w-full flex-col overflow-y-auto border-l border-rv-border bg-rv-chrome px-4 pb-6 text-rv-text data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:animate-in data-[state=open]:slide-in-from-right motion-reduce:animate-none sm:max-w-md sm:px-6 xl:hidden"
             >
               {drawerView === "main" ? (
                 <>
@@ -261,7 +261,7 @@ export function LandingHeader({ nav, a11y, megaMenu, locale, products, services 
                     <Dialog.Title className="rv-eyebrow">{a11y.menuTitle}</Dialog.Title>
                     <Dialog.Close
                       aria-label={a11y.closeMenu}
-                      className="inline-flex size-11 items-center justify-center rounded-rv hover:bg-rv-surface-2"
+                      className="inline-flex size-11 items-center justify-center rounded-rv hover:bg-rv-text/5"
                     >
                       <X className="size-6" aria-hidden="true" strokeWidth={1.5} />
                     </Dialog.Close>
@@ -334,14 +334,14 @@ export function LandingHeader({ nav, a11y, megaMenu, locale, products, services 
                       ref={sheetBackRef}
                       type="button"
                       onClick={() => setDrawerView("main")}
-                      className="-ml-2 inline-flex min-h-11 items-center gap-2 rounded-rv px-2 text-sm font-medium hover:bg-rv-surface-2"
+                      className="-ml-2 inline-flex min-h-11 items-center gap-2 rounded-rv px-2 text-sm font-medium hover:bg-rv-text/5"
                     >
                       <ArrowLeft className="size-4" aria-hidden="true" strokeWidth={1.75} />
                       {megaMenu.back}
                     </button>
                     <Dialog.Close
                       aria-label={a11y.closeMenu}
-                      className="inline-flex size-11 items-center justify-center rounded-rv hover:bg-rv-surface-2"
+                      className="inline-flex size-11 items-center justify-center rounded-rv hover:bg-rv-text/5"
                     >
                       <X className="size-6" aria-hidden="true" strokeWidth={1.5} />
                     </Dialog.Close>
