@@ -55,7 +55,7 @@ export const landingFr = {
   about: {
     eyebrow: "À propos",
     title: "Qui est Revosso",
-    body: "Revosso est une entreprise technologique immatriculée au Brésil. Nous travaillons avec les entreprises comme agence digitale, en construisant des sites web, des plateformes web et des logiciels, et nous exploitons nos propres produits. Les faire tourner chaque jour façonne notre manière de construire pour nos clients.",
+    body: "Revosso est une entreprise technologique. Nous travaillons avec les entreprises comme agence digitale, en construisant des sites web, des plateformes web et des logiciels, et nous exploitons nos propres produits. Les faire tourner chaque jour façonne notre manière de construire pour nos clients.",
     clientsTitle: "Nous construisons pour nos clients",
     clientsBody:
       "Sites web, plateformes web, applications mobiles et intégrations, conçus et construits pour votre entreprise, puis hébergés et maintenus si vous le souhaitez.",
@@ -64,11 +64,8 @@ export const landingFr = {
       "Revofin, RevoMaket, Rechajem et Revokonek nous appartiennent. Nous les construisons, les hébergeons et les réparons quand quelque chose casse.",
     factsLabel: "L’entreprise en bref",
     facts: {
-      legalEntity: "Entité juridique",
-      registration: "CNPJ",
       founded: "Création",
       team: "Équipe",
-      locations: "Implantations",
     },
     link: "En savoir plus sur nous",
   },
@@ -206,17 +203,11 @@ export const landingFr = {
     ],
   },
   security: {
-    eyebrow: "Sécurité et entreprise",
+    eyebrow: "Sécurité et politiques",
     title: "Sécurité",
     body: "La sécurité fait partie de notre façon de concevoir, construire et exploiter les logiciels. Contrôle d’accès, supervision et sauvegardes sont prévus dès le départ, pas ajoutés après coup.",
     link: "Notre approche de la sécurité",
-    company: {
-      title: "Exploité par Revosso LTDA",
-      body: "Revosso LTDA est notre société immatriculée au Brésil et l’exploitant de Revofin.",
-      legalNameLabel: "Raison sociale",
-      registrationLabel: "Immatriculation",
-      policiesLabel: "Politiques",
-    },
+    policiesLabel: "Politiques",
   },
   faq: {
     eyebrow: "FAQ",
@@ -352,7 +343,7 @@ export const landingFr = {
     eyebrow: "À propos",
     title: "Une agence digitale qui exploite aussi ses propres produits",
     intro:
-      "Revosso est une entreprise technologique immatriculée au Brésil. Nous construisons des logiciels pour nos clients, et nous construisons et exploitons nos propres produits.",
+      "Revosso est une entreprise technologique. Nous construisons des logiciels pour nos clients, et nous construisons et exploitons nos propres produits.",
     storyTitle: "Deux facettes d’une même entreprise",
     story: [
       "Comme agence digitale, nous concevons et construisons des sites web, des plateformes web, des applications mobiles et des intégrations pour les entreprises, et nous pouvons les héberger et les maintenir après le lancement.",
@@ -380,7 +371,7 @@ export const landingFr = {
     seo: {
       title: "À propos",
       description:
-        "Revosso est une agence digitale et un éditeur de logiciels immatriculé au Brésil. Nous construisons des logiciels pour nos clients et exploitons nos propres produits.",
+        "Revosso est une agence digitale et un éditeur de logiciels. Nous construisons des logiciels pour nos clients et exploitons nos propres produits.",
     },
   },
   careers: {

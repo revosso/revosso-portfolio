@@ -56,7 +56,7 @@ export const landingEn = {
   about: {
     eyebrow: "About",
     title: "Who is Revosso",
-    body: "Revosso is a technology company registered in Brazil. We work with businesses as a digital agency, building websites, web platforms and software, and we operate our own products. Running them every day shapes how we build for clients.",
+    body: "Revosso is a technology company. We work with businesses as a digital agency, building websites, web platforms and software, and we operate our own products. Running them every day shapes how we build for clients.",
     clientsTitle: "We build for clients",
     clientsBody:
       "Websites, web platforms, mobile apps and integrations, designed and built for your business, then hosted and maintained if you want us to.",
@@ -65,11 +65,8 @@ export const landingEn = {
       "Revofin, RevoMaket, Rechajem and Revokonek are ours. We build them, host them and fix them when something breaks.",
     factsLabel: "Company facts",
     facts: {
-      legalEntity: "Legal entity",
-      registration: "CNPJ",
       founded: "Founded",
       team: "Team",
-      locations: "Locations",
     },
     link: "More about us",
   },
@@ -195,17 +192,11 @@ export const landingEn = {
     ],
   },
   security: {
-    eyebrow: "Security and company",
+    eyebrow: "Security and policies",
     title: "Security",
     body: "Security is part of how we design, build and operate software. Access control, monitoring and backups are planned from the start, not added later.",
     link: "How we approach security",
-    company: {
-      title: "Operated by Revosso LTDA",
-      body: "Revosso LTDA is our registered company in Brazil and the operator of Revofin.",
-      legalNameLabel: "Legal name",
-      registrationLabel: "Company registration",
-      policiesLabel: "Policies",
-    },
+    policiesLabel: "Policies",
   },
   faq: {
     eyebrow: "FAQ",
@@ -343,7 +334,7 @@ export const landingEn = {
     eyebrow: "About",
     title: "A digital agency that also runs its own products",
     intro:
-      "Revosso is a technology company registered in Brazil. We build software for clients, and we build and operate our own products.",
+      "Revosso is a technology company. We build software for clients, and we build and operate our own products.",
     storyTitle: "Two sides of one company",
     story: [
       "As a digital agency, we design and build websites, web platforms, mobile apps and integrations for businesses, and we can host and maintain them after launch.",
@@ -371,7 +362,7 @@ export const landingEn = {
     seo: {
       title: "About",
       description:
-        "Revosso is a digital agency and software company registered in Brazil. We build software for clients and run our own products.",
+        "Revosso is a digital agency and software company. We build software for clients and run our own products.",
     },
   },
   careers: {

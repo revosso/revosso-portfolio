@@ -6,7 +6,7 @@ import { getLandingLocale } from "@/lib/landing-locale.server"
 import { LandingSiteShell } from "@/components/landing/landing-site-shell"
 import { PrinciplesSection } from "@/components/landing/sections/principles"
 import { CalendlyCta } from "@/components/landing/ui/calendly-cta"
-import { CompanyFacts } from "@/components/landing/ui/company-facts"
+import { CompanyFacts, visibleCompanyFacts } from "@/components/landing/ui/company-facts"
 import { PageHeader } from "@/components/landing/ui/page-header"
 import { Container, SectionHeader } from "@/components/landing/ui/primitives"
 import { ServiceCatalog } from "@/components/landing/ui/service-catalog"
@@ -30,7 +30,7 @@ export default async function AboutPage() {
   return (
     <LandingSiteShell>
       <main id="main-content" className="flex-1">
-        <section aria-labelledby="about-title" className="border-b border-rv-border">
+        <section aria-labelledby="about-title" className="rv-band border-b border-rv-border">
           <Container className="pb-16 pt-12 md:pb-20 md:pt-20">
             <PageHeader id="about-title" eyebrow={page.eyebrow} title={page.title} intro={page.intro} />
           </Container>
@@ -72,14 +72,16 @@ export default async function AboutPage() {
 
         <PrinciplesSection copy={copy.principles} />
 
-        <section aria-labelledby="facts-heading" className="rv-section border-t border-rv-border">
-          <Container>
-            <SectionHeader id="facts-heading" title={page.factsTitle} />
-            <CompanyFacts labels={copy.about.facts} label={page.factsTitle} className="mt-10" />
-          </Container>
-        </section>
+        {visibleCompanyFacts(copy.about.facts).length > 0 ? (
+          <section aria-labelledby="facts-heading" className="rv-section border-t border-rv-border">
+            <Container>
+              <SectionHeader id="facts-heading" title={page.factsTitle} />
+              <CompanyFacts labels={copy.about.facts} label={page.factsTitle} className="mt-10" />
+            </Container>
+          </section>
+        ) : null}
 
-        <section aria-label={`${page.careersTitle} / ${page.contactTitle}`} data-cta-zone="" className="border-t border-rv-border bg-rv-surface-2/60">
+        <section aria-label={`${page.careersTitle} / ${page.contactTitle}`} data-cta-zone="" className="border-t border-rv-border bg-rv-surface">
           <Container className="grid md:grid-cols-2 md:divide-x md:divide-rv-border">
             <div className="py-14 md:py-20 md:pr-10">
               <h2 className="rv-h2">{page.careersTitle}</h2>

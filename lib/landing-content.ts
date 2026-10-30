@@ -17,21 +17,21 @@ export const SOCIAL_LINKS: readonly { network: SocialNetwork; url: string }[] = 
 ]
 
 /**
- * Company facts. Legal name and CNPJ are as published in the Revofin site footer.
+ * Company facts. `displayName` is what visitors see (copyright line). `legalName` is
+ * only used in structured data (JSON-LD), never rendered. Registration details and
+ * places of incorporation are intentionally not published on the marketing site.
  * Unconfirmed facts stay `null` and are not rendered.
  */
 export const COMPANY: {
+  displayName: string
   legalName: string
-  registration: { label: string; value: string }
   foundedYear: number | null
   teamSize: string | null
-  locations: string | null
 } = {
+  displayName: "Revosso Corp",
   legalName: "Revosso LTDA",
-  registration: { label: "CNPJ", value: "65.687.150/0001-60" },
   foundedYear: null,
   teamSize: null,
-  locations: null,
 }
 
 /** Order of the "What we build" list; names and descriptions are translated. */

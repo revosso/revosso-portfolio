@@ -76,8 +76,7 @@ export function LandingFooter({ copy, services, a11y }: LandingFooterProps) {
       <div className="border-t border-rv-border">
         <div className="rv-container flex flex-col gap-3 py-6 text-sm text-rv-muted md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {COMPANY.legalName} · {COMPANY.registration.label}{" "}
-            <span className="tabular-nums">{COMPANY.registration.value}</span>. {copy.copyright}
+            © {new Date().getFullYear()} {COMPANY.displayName}. {copy.copyright}
           </p>
           <p>
             {copy.hiring}{" "}

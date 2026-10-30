@@ -55,7 +55,7 @@ export const landingPtBR = {
   about: {
     eyebrow: "Sobre",
     title: "Quem é a Revosso",
-    body: "A Revosso é uma empresa de tecnologia registrada no Brasil. Trabalhamos com empresas como agência digital, construindo sites, plataformas web e software, e operamos nossos próprios produtos. Operá-los todos os dias molda a forma como construímos para os clientes.",
+    body: "A Revosso é uma empresa de tecnologia. Trabalhamos com empresas como agência digital, construindo sites, plataformas web e software, e operamos nossos próprios produtos. Operá-los todos os dias molda a forma como construímos para os clientes.",
     clientsTitle: "Construímos para clientes",
     clientsBody:
       "Sites, plataformas web, apps e integrações, desenhados e construídos para a sua empresa, e depois hospedados e mantidos se você quiser.",
@@ -64,11 +64,8 @@ export const landingPtBR = {
       "Revofin, RevoMaket, Rechajem e Revokonek são nossos. Nós os construímos, hospedamos e corrigimos quando algo quebra.",
     factsLabel: "Dados da empresa",
     facts: {
-      legalEntity: "Razão social",
-      registration: "CNPJ",
       founded: "Fundação",
       team: "Equipe",
-      locations: "Localização",
     },
     link: "Saiba mais sobre nós",
   },
@@ -203,17 +200,11 @@ export const landingPtBR = {
     ],
   },
   security: {
-    eyebrow: "Segurança e empresa",
+    eyebrow: "Segurança e políticas",
     title: "Segurança",
     body: "Segurança faz parte de como desenhamos, construímos e operamos software. Controle de acesso, monitoramento e backups são planejados desde o início, não adicionados depois.",
     link: "Como tratamos a segurança",
-    company: {
-      title: "Operado pela Revosso LTDA",
-      body: "A Revosso LTDA é a nossa empresa registrada no Brasil e a operadora do Revofin.",
-      legalNameLabel: "Razão social",
-      registrationLabel: "Registro",
-      policiesLabel: "Políticas",
-    },
+    policiesLabel: "Políticas",
   },
   faq: {
     eyebrow: "FAQ",
@@ -349,7 +340,7 @@ export const landingPtBR = {
     eyebrow: "Sobre",
     title: "Uma agência digital que também opera seus próprios produtos",
     intro:
-      "A Revosso é uma empresa de tecnologia registrada no Brasil. Construímos software para clientes, e construímos e operamos nossos próprios produtos.",
+      "A Revosso é uma empresa de tecnologia. Construímos software para clientes, e construímos e operamos nossos próprios produtos.",
     storyTitle: "Dois lados de uma mesma empresa",
     story: [
       "Como agência digital, desenhamos e construímos sites, plataformas web, apps e integrações para empresas, e podemos hospedá-los e mantê-los depois do lançamento.",
@@ -377,7 +368,7 @@ export const landingPtBR = {
     seo: {
       title: "Sobre",
       description:
-        "A Revosso é uma agência digital e empresa de software registrada no Brasil. Construímos software para clientes e operamos nossos próprios produtos.",
+        "A Revosso é uma agência digital e empresa de software. Construímos software para clientes e operamos nossos próprios produtos.",
     },
   },
   careers: {
