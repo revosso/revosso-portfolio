@@ -1,14 +1,13 @@
-"use client"
-
-import { useState, useEffect } from "react"
+import type { Metadata } from "next"
 import Link from "next/link"
-import { resolveInitialLandingLocale } from "@/lib/landing-locale"
-import { Code, ArrowLeft, Shield, Lock, Server, Eye, AlertTriangle } from "lucide-react"
+import { AlertTriangle, Eye, Lock, Server, Shield } from "lucide-react"
+import { getLandingLocale } from "@/lib/landing-locale.server"
+import { LandingSiteShell } from "@/components/landing/landing-site-shell"
+import { LegalBox, LegalList, LegalPage, LegalSection, LegalSubheading, legalLinkClass } from "@/components/landing/legal"
 
 type Locale = "en" | "fr" | "pt-BR" | "es"
 
 const data: Record<Locale, {
-  backToHome: string
   title: string
   lastUpdated: string
   intro: string
@@ -42,14 +41,8 @@ const data: Record<Locale, {
   contactSecurity: string
   contactGeneral: string
   contactWebsite: string
-  allRightsReserved: string
-  footerPrivacy: string
-  footerTerms: string
-  footerCookies: string
-  footerSecurity: string
 }> = {
   en: {
-    backToHome: "Back to Home",
     title: "Security",
     lastUpdated: "Last updated:",
     intro: "Security is a foundational principle at Revosso — both in the systems we build for clients and in how we operate our own infrastructure. This page outlines our security practices and how to report potential vulnerabilities.",
@@ -123,14 +116,8 @@ const data: Record<Locale, {
     contactSecurity: "Security reports:",
     contactGeneral: "General inquiries:",
     contactWebsite: "Website:",
-    allRightsReserved: "All rights reserved.",
-    footerPrivacy: "Privacy",
-    footerTerms: "Terms",
-    footerCookies: "Cookies",
-    footerSecurity: "Security",
   },
   fr: {
-    backToHome: "Retour à l'accueil",
     title: "Sécurité",
     lastUpdated: "Dernière mise à jour :",
     intro: "La sécurité est un principe fondamental chez Revosso — aussi bien dans les systèmes que nous construisons pour nos clients que dans la façon dont nous exploitons notre propre infrastructure. Cette page présente nos pratiques de sécurité et la manière de signaler des vulnérabilités potentielles.",
@@ -204,14 +191,8 @@ const data: Record<Locale, {
     contactSecurity: "Signalements de sécurité :",
     contactGeneral: "Renseignements généraux :",
     contactWebsite: "Site web :",
-    allRightsReserved: "Tous droits réservés.",
-    footerPrivacy: "Confidentialité",
-    footerTerms: "Conditions",
-    footerCookies: "Cookies",
-    footerSecurity: "Sécurité",
   },
   "pt-BR": {
-    backToHome: "Voltar ao início",
     title: "Segurança",
     lastUpdated: "Última atualização:",
     intro: "A segurança é um princípio fundamental na Revosso — tanto nos sistemas que construímos para nossos clientes quanto na forma como operamos nossa própria infraestrutura. Esta página descreve nossas práticas de segurança e como reportar possíveis vulnerabilidades.",
@@ -285,14 +266,8 @@ const data: Record<Locale, {
     contactSecurity: "Relatórios de segurança:",
     contactGeneral: "Consultas gerais:",
     contactWebsite: "Site:",
-    allRightsReserved: "Todos os direitos reservados.",
-    footerPrivacy: "Privacidade",
-    footerTerms: "Termos",
-    footerCookies: "Cookies",
-    footerSecurity: "Segurança",
   },
   es: {
-    backToHome: "Volver al inicio",
     title: "Seguridad",
     lastUpdated: "Última actualización:",
     intro: "La seguridad es un principio fundamental en Revosso — tanto en los sistemas que construimos para nuestros clientes como en la forma en que operamos nuestra propia infraestructura. Esta página describe nuestras prácticas de seguridad y cómo reportar posibles vulnerabilidades.",
@@ -366,188 +341,104 @@ const data: Record<Locale, {
     contactSecurity: "Informes de seguridad:",
     contactGeneral: "Consultas generales:",
     contactWebsite: "Sitio web:",
-    allRightsReserved: "Todos los derechos reservados.",
-    footerPrivacy: "Privacidad",
-    footerTerms: "Términos",
-    footerCookies: "Cookies",
-    footerSecurity: "Seguridad",
   },
 }
 
 const cardIcons = [Lock, Shield, Server, Eye]
 const lastUpdated = "March 2026"
 
-export default function SecurityPage() {
-  const [locale, setLocale] = useState<Locale>("en")
+export async function generateMetadata(): Promise<Metadata> {
+  const t = data[await getLandingLocale()]
+  return { title: t.title, alternates: { canonical: "/security" } }
+}
 
-  useEffect(() => {
-    let cancelled = false
-    resolveInitialLandingLocale().then((l) => {
-      if (!cancelled) setLocale(l as Locale)
-    })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const t = data[locale]
-  const year = new Date().getFullYear()
+export default async function SecurityPage() {
+  const t = data[await getLandingLocale()]
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white" suppressHydrationWarning>
-      <header className="sticky top-0 z-50 w-full bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50 shadow-lg">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 lg:h-20 items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg">
-                  <Code className="h-6 w-6" />
-                </div>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                REVOSSO
-              </span>
-            </Link>
-            <Link href="/" className="flex items-center gap-2 text-slate-300 hover:text-blue-400 font-medium transition-colors text-sm">
-              <ArrowLeft className="h-4 w-4" />
-              {t.backToHome}
-            </Link>
-          </div>
-        </div>
-      </header>
+    <LandingSiteShell>
+      <LegalPage title={t.title} updated={`${t.lastUpdated} ${lastUpdated}`} intro={t.intro}>
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {t.cards.map((card, index) => {
+            const Icon = cardIcons[index]
+            return (
+              <li key={card.title} className="space-y-3 rounded-rv-frame border border-rv-border bg-rv-surface p-6">
+                <span className="inline-flex size-9 items-center justify-center rounded-rv bg-rv-accent/10 text-rv-accent">
+                  <Icon className="size-5" aria-hidden="true" strokeWidth={1.75} />
+                </span>
+                <h2 className="font-semibold">{card.title}</h2>
+                <p className="text-base text-rv-muted">{card.description}</p>
+              </li>
+            )
+          })}
+        </ul>
 
-      <main className="flex-1">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl py-16 lg:py-24">
-          <div className="space-y-4 mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white">{t.title}</h1>
-            <p className="text-slate-400 text-sm">{t.lastUpdated} {lastUpdated}</p>
-            <p className="text-lg text-slate-300 leading-relaxed">{t.intro}</p>
-          </div>
+        <LegalSection title={t.platformTitle}>
+          <LegalSubheading>{t.transportTitle}</LegalSubheading>
+          <LegalList>{(t.transport).map((item) => <li key={item}>{item}</li>)}</LegalList>
+          <LegalSubheading className="pt-2">{t.authTitle}</LegalSubheading>
+          <LegalList>{(t.auth).map((item) => <li key={item}>{item}</li>)}</LegalList>
+          <LegalSubheading className="pt-2">{t.apiTitle}</LegalSubheading>
+          <LegalList>{(t.api).map((item) => <li key={item}>{item}</li>)}</LegalList>
+          <LegalSubheading className="pt-2">{t.infraTitle}</LegalSubheading>
+          <LegalList>{(t.infra).map((item) => <li key={item}>{item}</li>)}</LegalList>
+        </LegalSection>
 
-          <div className="grid sm:grid-cols-2 gap-4 mb-12">
-            {t.cards.map((card, index) => {
-              const Icon = cardIcons[index]
-              return (
-                <div key={index} className="bg-slate-800/50 rounded-xl p-6 space-y-3 border border-slate-700/50">
-                  <div className="inline-flex p-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600">
-                    <Icon className="h-5 w-5 text-white" />
-                  </div>
-                  <h3 className="font-semibold text-white">{card.title}</h3>
-                  <p className="text-slate-400 text-sm">{card.description}</p>
-                </div>
-              )
-            })}
-          </div>
+        <LegalSection title={t.disclosureTitle}>
+          <p>{t.disclosure1}</p>
+          <LegalBox className="flex items-start gap-3 border-rv-accent/40">
+            <AlertTriangle className="mt-1 size-5 shrink-0 text-rv-accent" aria-hidden="true" strokeWidth={1.75} />
+            <div className="space-y-2">
+              <p className="font-semibold">{t.reportTitle}</p>
+              <p>
+                {t.reportText1}{" "}
+                <a href="mailto:security@revosso.com" className={legalLinkClass}>
+                  security@revosso.com
+                </a>{" "}
+                {t.reportText2}
+              </p>
+            </div>
+          </LegalBox>
+          <p>{t.disclosure2}</p>
+          <LegalList>{(t.reportItems).map((item) => <li key={item}>{item}</li>)}</LegalList>
+        </LegalSection>
 
-          <div className="space-y-10 text-slate-300 leading-relaxed">
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.platformTitle}</h2>
+        <LegalSection title={t.commitmentsTitle}>
+          <LegalList>{(t.commitments).map((item) => <li key={item}>{item}</li>)}</LegalList>
+        </LegalSection>
 
-              <h3 className="text-lg font-medium text-slate-200">{t.transportTitle}</h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.transport.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
+        <LegalSection title={t.scopeTitle}>
+          <p>{t.scopeIntro}</p>
+          <LegalList>{(t.scopeIn).map((item) => <li key={item}>{item}</li>)}</LegalList>
+          <p>{t.scopeOutIntro}</p>
+          <LegalList>{(t.scopeOut).map((item) => <li key={item}>{item}</li>)}</LegalList>
+        </LegalSection>
 
-              <h3 className="text-lg font-medium text-slate-200 mt-6">{t.authTitle}</h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.auth.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-
-              <h3 className="text-lg font-medium text-slate-200 mt-6">{t.apiTitle}</h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.api.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-
-              <h3 className="text-lg font-medium text-slate-200 mt-6">{t.infraTitle}</h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.infra.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.disclosureTitle}</h2>
-              <p>{t.disclosure1}</p>
-
-              <div className="bg-blue-950/40 border border-blue-800/50 rounded-xl p-6 space-y-3">
-                <div className="flex items-start gap-3">
-                  <AlertTriangle className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <div className="space-y-2">
-                    <p className="font-semibold text-white">{t.reportTitle}</p>
-                    <p className="text-slate-300">
-                      {t.reportText1}{" "}
-                      <a href="mailto:security@revosso.com" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
-                        security@revosso.com
-                      </a>{" "}
-                      {t.reportText2}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <p>{t.disclosure2}</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.reportItems.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.commitmentsTitle}</h2>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.commitments.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.scopeTitle}</h2>
-              <p>{t.scopeIntro}</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.scopeIn.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-              <p className="mt-4">{t.scopeOutIntro}</p>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                {t.scopeOut.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-            </section>
-
-            <section className="space-y-4">
-              <h2 className="text-2xl font-semibold text-white">{t.contactTitle}</h2>
-              <p>{t.contactIntro}</p>
-              <div className="bg-slate-800/50 rounded-xl p-6 space-y-2 text-sm">
-                <p className="font-semibold text-white">{t.contactCompany}</p>
-                <p>
-                  {t.contactSecurity}{" "}
-                  <a href="mailto:security@revosso.com" className="text-blue-400 hover:text-blue-300 transition-colors">
-                    security@revosso.com
-                  </a>
-                </p>
-                <p>
-                  {t.contactGeneral}{" "}
-                  <a href="mailto:contact@revosso.com" className="text-blue-400 hover:text-blue-300 transition-colors">
-                    contact@revosso.com
-                  </a>
-                </p>
-                <p>{t.contactWebsite} <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">revosso.com</Link></p>
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-
-      <footer className="bg-slate-950 border-t border-slate-800 py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-400 text-sm text-center md:text-left">© {year} Revosso. {t.allRightsReserved}</p>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-slate-400 text-sm">
-            <Link href="/privacy" className="hover:text-white transition-colors">{t.footerPrivacy}</Link>
-            <span>·</span>
-            <Link href="/terms" className="hover:text-white transition-colors">{t.footerTerms}</Link>
-            <span>·</span>
-            <Link href="/cookies" className="hover:text-white transition-colors">{t.footerCookies}</Link>
-            <span>·</span>
-            <Link href="/security" className="hover:text-white transition-colors">{t.footerSecurity}</Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+        <LegalSection title={t.contactTitle}>
+          <p>{t.contactIntro}</p>
+          <LegalBox>
+            <p className="font-semibold">{t.contactCompany}</p>
+            <p>
+              {t.contactSecurity}{" "}
+              <a href="mailto:security@revosso.com" className={legalLinkClass}>
+                security@revosso.com
+              </a>
+            </p>
+            <p>
+              {t.contactGeneral}{" "}
+              <a href="mailto:contact@revosso.com" className={legalLinkClass}>
+                contact@revosso.com
+              </a>
+            </p>
+            <p>
+              {t.contactWebsite}{" "}
+              <Link href="/" className={legalLinkClass}>
+                revosso.com
+              </Link>
+            </p>
+          </LegalBox>
+        </LegalSection>
+      </LegalPage>
+    </LandingSiteShell>
   )
 }

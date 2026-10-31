@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* `clip`, not `hidden`: hidden makes body a scroll container and breaks position: sticky. */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html {
@@ -14,11 +15,6 @@ html {
 html.dark,
 html.dark body {
   background-color: #020617; /* slate-950 */
-}
-
-html.landing-overlay-open,
-html.landing-overlay-open body {
-  overflow: hidden;
 }
 
 html[data-scroll-locked],
@@ -113,5 +109,141 @@ html[data-scroll-locked] body {
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ------------------------------------------------------------------------ */
+/* Marketing site design tokens (prefixed `rv-`, consumed via tailwind.config) */
+/* Values are RGB channels so Tailwind opacity modifiers work.                 */
+/* ------------------------------------------------------------------------ */
+@layer base {
+  /*
+   * Roles: bg = page; surface = cards and alternate sections; surface-raised = inputs
+   * and the mega-menu panel; chrome = header, menus and screenshot frames (raised in
+   * dark, surface in light, which keeps pure white off page-level areas).
+   */
+  :root {
+    --rv-bg: 243 245 249; /* #F3F5F9 */
+    --rv-surface: 250 251 253; /* #FAFBFD */
+    --rv-surface-raised: 255 255 255; /* #FFFFFF */
+    --rv-chrome: 250 251 253;
+    --rv-border: 222 227 236; /* #DEE3EC */
+    --rv-text: 18 24 38; /* #121826 */
+    --rv-muted: 74 84 104; /* #4A5468 */
+    --rv-accent: 29 79 208; /* #1D4FD0 */
+    --rv-accent-fill: 29 79 208; /* #1D4FD0 */
+    --rv-accent-fill-hover: 24 66 176; /* #1842B0 */
+    --rv-on-accent: 255 255 255;
+    --rv-logo-tile: 255 255 255;
+    --rv-bezel: 18 24 38;
+    --rv-scrim: rgb(18 24 38 / 0.3);
+    --rv-band-image: none;
+    --rv-shadow-frame: 0 1px 2px rgb(18 24 38 / 0.08), 0 16px 32px -16px rgb(18 24 38 / 0.08);
+  }
+
+  .dark {
+    --rv-bg: 17 23 41; /* #111729 */
+    --rv-surface: 26 33 51; /* #1A2133 */
+    --rv-surface-raised: 32 40 57; /* #202839 */
+    --rv-chrome: 32 40 57;
+    --rv-border: 43 52 72; /* #2B3448 */
+    --rv-text: 238 241 247; /* #EEF1F7 */
+    --rv-muted: 163 172 191; /* #A3ACBF */
+    /* Text links and active states only. Never a button background. */
+    --rv-accent: 91 155 255; /* #5B9BFF */
+    /* Button backgrounds only (white text). Never used as text on dark. */
+    --rv-accent-fill: 47 107 234; /* #2F6BEA */
+    --rv-accent-fill-hover: 38 92 206; /* #265CCE */
+    --rv-on-accent: 255 255 255;
+    --rv-logo-tile: 255 255 255;
+    --rv-bezel: 43 52 72;
+    --rv-scrim: rgb(8 12 24 / 0.6);
+    --rv-band-image: linear-gradient(135deg, #1d2536 0%, #202839 100%);
+    --rv-shadow-frame: 0 1px 2px rgb(8 12 24 / 0.35), 0 20px 40px -20px rgb(8 12 24 / 0.35);
+  }
+
+  .rv-site,
+  .rv-portal {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 768px) {
+    .rv-site {
+      font-size: 18px;
+    }
+  }
+
+  /* The reserved scrollbar gutter shows the html background; match it to the site. */
+  html:has(.rv-site),
+  html:has(.rv-site) body {
+    background-color: rgb(var(--rv-bg));
+  }
+
+  .rv-site :focus-visible,
+  .rv-portal :focus-visible {
+    outline: 2px solid rgb(var(--rv-accent));
+    outline-offset: 3px;
+  }
+
+  .rv-site section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@layer components {
+  .rv-container {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+
+  .rv-section {
+    @apply py-20 md:py-28;
+  }
+
+  .rv-h1 {
+    font-size: clamp(2.375rem, 4.4vw, 3.75rem);
+    line-height: 1.06;
+    font-weight: 600;
+    letter-spacing: -0.032em;
+  }
+
+  .rv-h2 {
+    font-size: clamp(1.75rem, 2.6vw, 2.375rem);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.024em;
+  }
+
+  .rv-h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+  }
+
+  .rv-eyebrow {
+    @apply text-xs font-medium uppercase text-rv-muted md:text-[13px];
+    letter-spacing: 0.08em;
+  }
+
+  .rv-link {
+    @apply font-medium text-rv-accent underline decoration-rv-accent/30 underline-offset-4 transition-colors hover:decoration-rv-accent;
+  }
+
+  .rv-skip-link {
+    @apply fixed left-4 top-4 z-[100] -translate-y-24 rounded-rv bg-rv-accent-fill px-4 py-3 text-sm font-medium text-rv-on-accent transition-transform focus-visible:translate-y-0;
+  }
+
+  /* The one large header band per page. Dark only; light keeps the page background. */
+  .rv-band {
+    background-image: var(--rv-band-image);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.rv-site) {
+    scroll-behavior: smooth;
   }
 }

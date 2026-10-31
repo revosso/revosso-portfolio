@@ -1,6 +1,15 @@
 import type React from "react"
+import type { Viewport } from "next"
 import Script from "next/script"
 import { ThemeProvider } from "@/components/theme-provider"
+import { THEME_COLORS } from "@/lib/site"
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_COLORS.light },
+    { media: "(prefers-color-scheme: dark)", color: THEME_COLORS.dark },
+  ],
+}
 
 /**
  * Landing Page Layout

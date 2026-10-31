@@ -31,3 +31,7 @@ next-env.d.ts
 # data storage
 /data
 /lib/generated/prisma
+
+# local design screenshots
+/revosso-*screenshots*/
+/revosso-*screenshots*.zip

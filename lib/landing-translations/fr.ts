@@ -1,283 +1,459 @@
-/** French — landing page marketing copy */
+/** French: landing page marketing copy */
 
-import { LandingLocaleMessages } from "./types";
+import type { LandingLocaleMessages } from "./types"
 
 export const landingFr = {
+  a11y: {
+    skipToContent: "Aller au contenu",
+    home: "Accueil Revosso",
+    primaryNav: "Principale",
+    openMenu: "Ouvrir le menu",
+    closeMenu: "Fermer le menu",
+    menuTitle: "Menu",
+    language: "Langue",
+    changeLanguage: "Changer de langue",
+    opensInNewTab: "(s’ouvre dans un nouvel onglet)",
+    toggleTheme: "Changer de thème",
+  },
   nav: {
-    products: "Produits",
-    approach: "Approche",
     services: "Services",
-    industries: "Solutions",
+    products: "Produits",
+    about: "À propos",
     careers: "Carrières",
     contact: "Contact",
+    cta: "Réserver un appel gratuit",
   },
-  productsMenu: {
-    sectionLabel: "Nos produits",
-    comingSoon: "Bientôt disponible",
-    items: {
-      rechajem: {
-        description: "Envoyez de l'argent à vos proches — rapide, sécurisé, depuis votre téléphone.",
-      },
-      revofin: {
-        description: "Paiements, factures et finances réunis en un seul outil pour votre entreprise.",
-      },
-      revomaket: {
-        description: "Lancez votre boutique en ligne et vendez à vos clients en quelques minutes.",
-      },
-      revobarber: {
-        description: "Réservations en ligne pour barbiers et salons — moins d'appels, plus de clients.",
-      },
-      revocom: {
-        description: "Votre boutique, vos clients et vos ventes — réunis sur une seule plateforme.",
-      },
-      revoschool: {
-        description: "Inscriptions, classes et communication avec les parents — simple et centralisé.",
-      },
+  megaMenu: {
+    label: "Menu des produits",
+    productsTab: "Produits",
+    servicesTab: "Services",
+    exploreAll: "Voir tous les produits",
+    close: "Fermer le menu",
+    categoriesLabel: "Catégories de produits",
+    categories: {
+      all: "Tous les produits",
+      business: "Gestion et finance",
+      commerce: "Commerce",
+      payments: "Paiements et mobile",
+      communication: "Communication",
     },
+    learnMore: "En savoir plus",
+    visitLive: "Voir le site",
+    subProductsLabel: "Produits {name}",
+    servicesHeading: "Ce que nous construisons",
+    back: "Retour",
   },
   hero: {
-    h1: "Logiciel Sur Mesure, Ingénierie de Plateforme & Infrastructures Évolutives",
-    subheadline:
-      "Nous concevons et construisons des plateformes logicielles sur mesure, modernisons les systèmes existants et exploitons des infrastructures évolutives pour les organisations qui dépendent de systèmes numériques fiables.",
-    primaryCta: "Discuter de Votre Projet",
-    secondaryCta: "Explorer Notre Approche",
-  },
-  whoWeAre: {
-    title: "Infrastructure Numérique. Conçue pour l'Échelle.",
-    intro:
-      "Revosso est une société d'ingénierie d'infrastructure et de plateformes numériques. Nous concevons et exploitons des systèmes critiques et des fondations numériques pérennes pour les entreprises et les acteurs produit.",
-    partnerTitle: "Nous collaborons avec les organisations qui ont besoin de :",
-    requirements: [
-      "Architecture backend robuste",
-      "Plateformes numériques haute performance",
-      "Systèmes financiers et opérationnels sécurisés",
-      "Scalabilité technique à long terme",
-    ],
-    closing: "Nous ne livrons pas de solutions à court terme.\nNous concevons des fondations numériques.",
-  },
-  platformLifecycle: {
-    title: "De l'Architecture à l'Exploitation",
+    eyebrow: "Entreprise de logiciels",
+    title: "Une entreprise de logiciels qui construit pour ses clients, et exploite ses propres produits.",
     subtitle:
-      "Nous construisons de nouvelles plateformes, reprenons et optimisons les systèmes existants, et exploitons et faisons évoluer votre infrastructure.",
-    build: {
-      title: "CONSTRUIRE",
-      description:
-        "Nous concevons et développons des plateformes numériques sur mesure dès l'origine, alignées sur vos objectifs métier et votre croissance à long terme.",
-    },
-    takeOver: {
-      title: "REPRENDRE & OPTIMISER",
-      intro: "Nous prenons en charge les plateformes et systèmes existants pour :",
-      items: [
-        "Stabiliser et refactoriser le code",
-        "Améliorer les performances",
-        "Réduire la dette technique",
-        "Moderniser l'architecture",
-        "Renforcer la sécurité",
-      ],
-    },
-    operate: {
-      title: "EXPLOITER & ÉVOLUER",
-      intro: "Nous exploitons et faisons évoluer votre infrastructure et vos opérations plateforme, notamment :",
-      items: [
-        "Hébergement sécurisé",
-        "Surveillance des performances",
-        "Déploiement cloud",
-        "Maintenance technique continue",
-        "Évolution de l'infrastructure",
-      ],
-    },
-    cta: "Discuter de Vos Besoins de Plateforme",
+      "Nous concevons, construisons et exploitons des logiciels pour nos clients. Nous exploitons aussi nos propres produits : Revofin, RevoMaket, Rechajem et Revokonek. Nous savons ce qu’il faut pour qu’un logiciel continue de fonctionner après son lancement.",
+    primaryCta: "Réserver un appel gratuit de 30\u00a0min",
+    secondaryCta: "Voir nos produits",
+    showcaseCaption: "Les produits que nous exploitons",
   },
-  howWeWork: {
-    title: "Ingénierie avec Vision à Long Terme",
-    principles: [
-      { title: "Architecture avant le code", description: "Concevoir des systèmes évolutifs" },
-      { title: "Scalabilité dès le départ", description: "Construite pour croître avec votre entreprise" },
-      { title: "Sécurité d'abord", description: "Protection intégrée dès les fondations" },
-      { title: "Code propre et maintenable", description: "Résistant à l'épreuve du temps" },
-      { title: "Performance comme référence", description: "Vitesse et efficacité par conception" },
-      { title: "Infrastructure fiable", description: "Systèmes fiables sur lesquels vous pouvez compter" },
+  about: {
+    eyebrow: "À propos",
+    title: "Qui est Revosso",
+    body: "Revosso est une entreprise de logiciels. Nous construisons des sites web, des plateformes web et des logiciels sur mesure pour les entreprises, et nous exploitons nos propres produits. Les faire tourner chaque jour façonne notre manière de construire pour nos clients.",
+    clientsTitle: "Nous construisons pour nos clients",
+    clientsBody:
+      "Sites web, plateformes web, applications mobiles et intégrations, conçus et construits pour votre entreprise, puis hébergés et maintenus si vous le souhaitez.",
+    productsTitle: "Nous exploitons nos propres produits",
+    productsBody:
+      "Revofin, RevoMaket, Rechajem et Revokonek nous appartiennent. Nous les construisons, les hébergeons et les réparons quand quelque chose casse.",
+    factsLabel: "L’entreprise en bref",
+    facts: {
+      founded: "Création",
+      team: "Équipe",
+    },
+    link: "En savoir plus sur nous",
+  },
+  services: {
+    eyebrow: "Services",
+    title: "Ce que nous construisons",
+    intro: "Tout ce qui touche au logiciel, de la première maquette aux serveurs qui le font tourner.",
+    catalog: {
+      websites: {
+        name: "Sites web et landing pages",
+        description: "Sites d’entreprise et pages dédiées à un lancement ou une campagne.",
+      },
+      platforms: {
+        name: "Plateformes web et SaaS",
+        description: "Applications web avec comptes, données et logique métier, y compris des logiciels que vous vendez à vos clients.",
+      },
+      mobile: { name: "Applications mobiles (iOS et Android)", description: "Applications pour iPhone et téléphones Android." },
+      apis: {
+        name: "API et intégrations",
+        description: "Des API pour votre produit et des connexions entre les outils et services que vous utilisez déjà.",
+      },
+      design: { name: "Design UI/UX", description: "Conception d’interfaces et d’expériences pour sites, plateformes et applications." },
+      email: { name: "E-mail marketing", description: "Campagnes e-mail et modèles utilisés pour les envoyer." },
+      hosting: {
+        name: "Hébergement, cloud et maintenance",
+        description: "Hébergement et configuration cloud, puis mises à jour et corrections après le lancement.",
+      },
+    },
+    engagementTitle: "Trois façons de travailler avec nous",
+    youGet: "Vous obtenez",
+    steps: [
+      {
+        title: "Construire",
+        description: "Un nouveau logiciel conçu autour du fonctionnement de votre entreprise.",
+        bullets: ["Architecture et conception technique", "Plateformes web et API", "Documentation dès le départ"],
+        deliverables: "Un plan d’architecture, un logiciel qui fonctionne et sa documentation.",
+      },
+      {
+        title: "Reprendre",
+        description: "Nous prenons en charge un système existant et le rendons fiable.",
+        bullets: [
+          "Audit et stabilisation du code",
+          "Correction des problèmes de performance et de sécurité",
+          "Réduction progressive de la dette technique",
+        ],
+        deliverables: "Un audit, un code stabilisé et un plan de modernisation.",
+      },
+      {
+        title: "Exploiter",
+        description: "Nous l’hébergeons, le surveillons et le maintenons pendant votre croissance.",
+        bullets: ["Hébergement et déploiement", "Supervision et gestion des incidents", "Maintenance et montée en charge"],
+        deliverables: "Une seule équipe responsable de son bon fonctionnement.",
+      },
     ],
   },
-  industries: {
-    title: "Nos Capacités d'Ingénierie",
-    subtitle:
-      "De la construction de nouveaux systèmes à la modernisation de l'existant — nous couvrons tout le spectre de l'ingénierie logicielle sur mesure.",
+  products: {
+    eyebrow: "Nos produits",
+    title: "Les produits que nous exploitons",
+    intro: "Nous les exploitons nous-mêmes. La même équipe travaille pour nos clients.",
+    learnMore: "En savoir plus",
+    learnMoreAbout: "En savoir plus sur {name}",
+    allProducts: "Tous les produits",
+  },
+  whoWeHelp: {
+    eyebrow: "Avec qui nous travaillons",
+    title: "Par où nos clients commencent",
     items: [
       {
-        title: "Développement Logiciel Sur Mesure",
-        description:
-          "Nous concevons et développons des plateformes, applications et systèmes numériques sur mesure dès l'origine — alignés sur vos besoins métier exacts et vos objectifs à long terme.",
+        title: "Un nouveau projet",
+        body: "Vous avez une idée et il vous faut un logiciel qui tienne quand les vrais clients arrivent. Nous le concevons et le construisons correctement dès le départ.",
+        cta: "Parler d’un nouveau projet",
       },
       {
-        title: "Reprise & Modernisation de Systèmes",
-        description:
-          "Nous prenons en charge les codebases existants, les stabilisons, éliminons la dette technique et modernisons l'architecture pour remettre vos systèmes à niveau.",
+        title: "Un système fragile",
+        body: "Le code est lent, instable, ou plus personne dans l’équipe ne le comprend. Nous le stabilisons sans réécriture risquée.",
+        cta: "Parler d’une reprise",
       },
       {
-        title: "Conseil Technique & Architecture",
-        description:
-          "Nous conseillons sur la conception de systèmes, le choix des technologies et la stratégie de scalabilité — pour guider vos décisions techniques avant et pendant le développement.",
-      },
-      {
-        title: "Maintenance & Évolution Long Terme",
-        description:
-          "Nous assurons la propriété technique continue de vos systèmes — surveillance des performances, améliorations itératives et évolution de votre plateforme avec votre croissance.",
+        title: "Quelqu’un pour l’exploiter",
+        body: "Vous préférez gérer votre entreprise plutôt que des serveurs. Nous hébergeons, surveillons et maintenons la plateforme pour vous.",
+        cta: "Parler d’exploitation",
       },
     ],
-    cta: "Discuter de Votre Projet",
   },
-  clients: {
-    title: "Reconnu par Entreprises & Partenaires",
-    copy: "Nous collaborons avec des entreprises et plateformes pour offrir des solutions sécurisées, évolutives et performantes.",
+  process: {
+    eyebrow: "Méthode",
+    title: "Notre méthode",
+    intro: "Quatre étapes. Vous voyez un logiciel qui fonctionne tôt et souvent.",
+    youGet: "Vous obtenez",
+    steps: [
+      {
+        title: "Découverte",
+        description: "Nous comprenons vos objectifs, vos contraintes et vos systèmes actuels.",
+        deliverable: "Un plan cadré.",
+      },
+      {
+        title: "Architecture",
+        description: "Nous concevons le système avant d’écrire le code.",
+        deliverable: "Un plan technique et un calendrier.",
+      },
+      {
+        title: "Développement",
+        description: "Nous livrons par courtes itérations, avec des démos régulières.",
+        deliverable: "Un logiciel qui fonctionne tôt.",
+      },
+      {
+        title: "Exploitation",
+        description: "Nous restons pour surveiller, corriger et améliorer.",
+        deliverable: "Un responsable technique sur la durée.",
+      },
+    ],
+  },
+  principles: {
+    eyebrow: "Principes",
+    title: "Notre façon de construire",
+    items: [
+      {
+        title: "La conception d’abord",
+        description: "Nous pensons le système avant d’écrire le code, pour éviter une réécriture plus tard.",
+      },
+      { title: "Prévu pour grandir", description: "Nous anticipons plus d’utilisateurs et plus de données dès le départ." },
+      {
+        title: "La sécurité dans la conception",
+        description: "La sécurité fait partie de l’architecture, pas d’une liste de contrôle finale.",
+      },
+      { title: "Un code lisible", description: "Un autre ingénieur doit pouvoir le reprendre et avancer vite." },
+      {
+        title: "La performance comme exigence",
+        description: "Nous mesurons la vitesse et corrigeons les régressions avant la mise en ligne.",
+      },
+      {
+        title: "Prévoir les pannes",
+        description: "Supervision, sauvegardes et reprise sont en place avant le lancement.",
+      },
+    ],
+  },
+  security: {
+    eyebrow: "Sécurité et politiques",
+    title: "Sécurité",
+    body: "La sécurité fait partie de notre façon de concevoir, construire et exploiter les logiciels. Contrôle d’accès, supervision et sauvegardes sont prévus dès le départ, pas ajoutés après coup.",
+    link: "Notre approche de la sécurité",
+    policiesLabel: "Politiques",
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Questions",
+    items: [
+      {
+        question: "Combien coûte un projet ?",
+        answer:
+          "Cela dépend du périmètre. Après un appel gratuit de 30 minutes, nous proposons un périmètre fixe ou un accompagnement continu, pour que vous connaissiez les coûts à l’avance.",
+      },
+      {
+        question: "Combien de temps cela prend-il ?",
+        answer: "Un projet ciblé prend généralement [durée]. Nous donnons un calendrier réaliste après la découverte.",
+      },
+      {
+        question: "Pouvez-vous reprendre notre code existant ?",
+        answer: "Oui. Nous commençons par un audit, puis nous stabilisons et modernisons étape par étape au lieu de tout réécrire.",
+      },
+      {
+        question: "Serons-nous propriétaires du code ?",
+        answer: "[À confirmer : vous êtes propriétaire de la PI et du code source de ce que nous construisons pour vous.]",
+      },
+      {
+        question: "Signez-vous des accords de confidentialité ?",
+        answer: "Oui. Nous signons volontiers un NDA avant de parler de votre projet.",
+      },
+      {
+        question: "Assurez-vous un suivi après le lancement ?",
+        answer: "Oui. Après le lancement, nous pouvons héberger, surveiller et maintenir le logiciel pour vous.",
+      },
+      {
+        question: "Pouvez-vous travailler avec notre équipe interne ?",
+        answer: "Oui. Nous pouvons piloter le travail, épauler vos ingénieurs ou leur passer le relais.",
+      },
+      {
+        question: "Que se passe-t-il pendant l’appel gratuit ?",
+        answer: "Nous écoutons, posons des questions et vous disons honnêtement si nous pouvons vous aider, et comment. Sans engagement.",
+      },
+    ],
   },
   finalCta: {
-    title: "Construisons l'Infrastructure Derrière Votre Croissance",
-    subtitle:
-      "Discutez de votre projet et explorez comment nous pouvons concevoir des solutions évolutives pour votre entreprise.",
-    trust:
-      "Nous établissons des partenariats à long terme fondés sur l'ingénierie structurée, la stabilité opérationnelle et l'évolution continue de la plateforme. Nous privilégions la clarté architecturale et la propriété technique plutôt que des solutions rapides.",
-    scheduleButton: "Planifier un entretien",
-    button: "Nous Contacter",
+    eyebrow: "Contact",
+    title: "Parlons-en",
+    body: "Dites-nous sur quoi vous travaillez. Nous répondons avec des étapes concrètes.",
+    primaryCta: "Réserver un appel gratuit de 30\u00a0min",
+    formIntro: "Ou envoyez-nous un court message.",
   },
-  contact: {
-    title: {
-      default: "Nous Contacter",
-      newPlatform: "Développement de Nouvelle Plateforme",
-      takeover: "Reprise & Optimisation de Plateforme",
-      maintenance: "Maintenance de Plateforme",
-      hosting: "Infrastructure & Hébergement",
-      partnership: "Demande de Partenariat",
+  contactForm: {
+    name: "Nom",
+    email: "E-mail professionnel",
+    need: "J’ai besoin d’aide pour",
+    needPlaceholder: "Choisissez une option",
+    needOptions: {
+      newBuild: "Un nouveau projet",
+      fixExisting: "Un système existant à reprendre",
+      hostingOps: "Hébergement et exploitation",
+      notSure: "Je ne sais pas encore",
     },
-    description: "Décrivez-nous votre projet. Nous répondons sous 24 heures.",
-    fields: {
-      name: "Nom",
-      email: "Email",
-      company: "Entreprise",
-      need: "De quoi avez-vous besoin ?",
-      message: "Message",
-      needPlaceholder: "Sélectionnez votre besoin",
-      messagePlaceholder: "Décrivez-nous votre projet...",
-    },
-    options: {
-      newPlatform: "Développement de Nouvelle Plateforme",
-      takeover: "Reprise & Optimisation de Plateforme",
-      maintenance: "Maintenance de Plateforme",
-      hosting: "Infrastructure & Hébergement",
-      partnership: "Partenariat",
-      general: "Demande Générale",
-    },
-    buttons: {
-      cancel: "Annuler",
-      send: "Envoyer",
-      sending: "Envoi...",
-    },
-    toast: {
-      selectionRequired: "Sélection requise",
-      selectionRequiredDesc: "Veuillez sélectionner ce dont vous avez besoin.",
-      success: "Message envoyé avec succès",
-      successDesc: "Nous répondrons sous 24 heures. Un email de confirmation a été envoyé.",
-      error: "Erreur",
-      errorDesc: "Une erreur est survenue. Veuillez réessayer.",
+    message: "Message",
+    messagePlaceholder: "Quelques lignes sur votre projet, vos délais et votre configuration actuelle.",
+    honeypot: "Laissez ce champ vide",
+    submit: "Envoyer le message",
+    sending: "Envoi…",
+    successTitle: "Message envoyé",
+    success: "Merci, nous avons bien reçu votre message. Nous vous répondrons par e-mail.",
+    sendAnother: "Envoyer un autre message",
+    error: "Une erreur s’est produite. Réessayez, ou écrivez-nous à {email}.",
+    rateLimited: "Trop de tentatives. Patientez quelques minutes avant de réessayer.",
+    validation: {
+      name: "Indiquez votre nom (au moins 2 caractères).",
+      email: "Indiquez une adresse e-mail valide.",
+      need: "Choisissez le type d’aide dont vous avez besoin.",
+      message: "Écrivez au moins 10 caractères.",
+      messageMax: "Votre message doit faire moins de 2 000 caractères.",
     },
   },
   footer: {
-    description:
-      "Infrastructure numérique, ingénierie de plateforme et systèmes évolutifs pour la croissance des entreprises.",
-    services: "Services",
-    company: "Entreprise",
-    legal: "Légal",
-    contact: "Contact",
+    tagline: "Entreprise de logiciels. Nous construisons pour nos clients et exploitons nos propres produits.",
+    servicesTitle: "Services",
+    companyTitle: "Entreprise",
+    legalTitle: "Mentions légales",
     links: {
-      customPlatforms: "Plateformes Sur Mesure",
-      platformEngineering: "Ingénierie de Plateforme",
-      infrastructure: "Infrastructure",
-      ourApproach: "Notre Approche",
-      industries: "Solutions",
+      about: "À propos",
+      products: "Produits",
+      howWeWork: "Notre méthode",
+      faq: "FAQ",
       careers: "Carrières",
       contact: "Contact",
       privacy: "Confidentialité",
       terms: "Conditions",
-      cookies: "Cookies",
       security: "Sécurité",
+      cookies: "Cookies",
     },
+    followUs: "Suivez-nous",
+    social: {
+      facebook: "Revosso sur Facebook",
+      instagram: "Revosso sur Instagram",
+      tiktok: "Revosso sur TikTok",
+    },
+    hiring: "Nous recrutons.",
+    hiringLink: "Voir les postes ouverts",
     copyright: "Tous droits réservés.",
   },
-  careers: {
-    hero: {
-      eyebrow: "Carrières",
-      title: "Construisez l’avenir avec Revosso",
-      subtitle:
-        "Rejoignez-nous pour concevoir des produits numériques, des plateformes logicielles et des solutions qui ont un impact réel.",
-      cta: "Découvrir les postes ouverts",
+  productPage: {
+    breadcrumb: "Produits",
+    status: "En ligne",
+    visitLive: "Voir le site",
+    gallery: "Captures d’écran",
+    overview: "Présentation",
+    whatItDoes: "Ce qu’il fait",
+    whoFor: "Pour qui",
+    subProducts: "Trois produits",
+    builtByTitle: "Construit et exploité par Revosso",
+    builtByBody:
+      "Revosso conçoit, construit, héberge et maintient {name}, avec la même méthode que pour les projets de nos clients.",
+    ctaTitle: "Vous voulez quelque chose de semblable pour votre entreprise ?",
+    ctaButton: "Parlons-en",
+    otherProducts: "Autres produits",
+  },
+  productsPage: {
+    eyebrow: "Produits",
+    title: "Les produits que nous construisons et exploitons",
+    intro: "Quatre produits en ligne, construits et exploités par l’équipe Revosso.",
+    howTitle: "Comment nous les construisons et les exploitons",
+    howBody:
+      "La même équipe conçoit, construit, héberge et maintient chaque produit. Ce que nous apprenons en les exploitant nourrit le travail que nous faisons pour nos clients.",
+    seo: {
+      title: "Produits",
+      description: "Revofin, RevoMaket, Rechajem et Revokonek : des produits en ligne construits et exploités par Revosso.",
     },
-    whyJoin: {
-      title: "Pourquoi rejoindre Revosso ?",
-      subtitle:
-        "Des occasions de travailler sur des produits, de contribuer à des projets technologiques et de grandir avec l’entreprise.",
+  },
+  aboutPage: {
+    eyebrow: "À propos",
+    title: "Une entreprise de logiciels qui exploite aussi ses propres produits",
+    intro:
+      "Revosso est une entreprise de logiciels. Nous construisons pour nos clients, et nous construisons et exploitons nos propres produits.",
+    storyTitle: "Deux facettes d’une même entreprise",
+    story: [
+      "Pour nos clients, nous concevons et construisons des sites web, des plateformes web, des applications mobiles et des intégrations, et nous pouvons les héberger et les maintenir après le lancement.",
+      "Nous exploitons aussi quatre produits à nous : Revofin, RevoMaket, Rechajem et Revokonek. Nous en sommes responsables chaque jour, de la première maquette aux serveurs qui les font tourner.",
+    ],
+    sidesTitle: "Comment les deux facettes se nourrissent",
+    sides: [
+      {
+        title: "Nos produits nous gardent honnêtes",
+        body: "Exploiter un logiciel en ligne, c’est gérer de vrais utilisateurs, des pannes et des demandes de support. Cette expérience nourrit chaque projet client.",
+      },
+      {
+        title: "Le travail client nous ouvre",
+        body: "Les projets clients nous emmènent vers des secteurs et des problèmes que nos produits ne couvrent pas, et ce que nous apprenons revient à nos produits.",
+      },
+    ],
+    factsTitle: "L’entreprise en bref",
+    servicesTitle: "Ce que nous construisons",
+    careersTitle: "Travailler avec nous",
+    careersBody: "Nous recrutons. Découvrez les postes ouverts en ce moment.",
+    careersLink: "Voir les postes ouverts",
+    contactTitle: "Lancer un projet",
+    contactBody: "Dites-nous sur quoi vous travaillez, ou réservez un appel gratuit de 30 minutes.",
+    contactLink: "Nous contacter",
+    seo: {
+      title: "À propos",
+      description:
+        "Revosso est une entreprise de logiciels. Nous construisons pour nos clients et exploitons nos propres produits.",
+    },
+  },
+  careers: {
+    seo: {
+      title: "Carrières",
+      description: "Postes ouverts chez Revosso, entreprise de logiciels. À distance, temps plein ou partiel.",
+    },
+    eyebrow: "Carrières",
+    title: "Construisez des logiciels avec Revosso",
+    intro: "Rejoignez l’équipe qui construit des logiciels pour ses clients et exploite Revofin, RevoMaket, Rechajem et Revokonek.",
+    seeRoles: "Voir les postes ouverts",
+    why: {
+      title: "Pourquoi Revosso",
       items: [
         {
           title: "Travailler sur des produits numériques",
-          description:
-            "Contribuez à Revofin, Revomaket, Revokonek, Rechajem et aux logiciels sur mesure que nous concevons pour nos clients.",
+          description: "Aidez à construire et faire grandir Revofin, RevoMaket, Revokonek, Rechajem et des logiciels sur mesure pour nos clients.",
         },
         {
-          title: "Contribuer à des projets technologiques",
-          description:
-            "Participez à un travail concret sur les produits, les plateformes et l’infrastructure — du marketing à l’ingénierie.",
+          title: "Contribuer à de vrais projets technologiques",
+          description: "Participez au travail sur les produits, les plateformes et l’infrastructure, du marketing à l’ingénierie.",
         },
         {
-          title: "Collaborer avec une entreprise en croissance",
-          description:
-            "Rejoignez une équipe qui construit des produits et services numériques, et aidez Revosso à se faire connaître.",
+          title: "Rejoindre une entreprise en croissance",
+          description: "Rejoignez une équipe qui construit des produits et services numériques, et aidez à façonner l’image de Revosso sur le marché.",
         },
         {
           title: "Développer vos compétences",
-          description:
-            "Apprenez en livrant un travail utile : stratégie, contenu, campagnes et les systèmes qui les soutiennent.",
+          description: "Apprenez en livrant un travail qui compte : stratégie, contenu, campagnes et les systèmes qui les soutiennent.",
         },
       ],
     },
-    openPositions: {
+    roles: {
       title: "Postes ouverts",
-      viewDetails: "Voir le poste",
-      posted: "Publié le",
+      openRole: "Voir le poste",
+      empty: "Aucun poste n’est ouvert pour le moment. Vous pouvez quand même nous écrire à {email}. Nous lisons chaque candidature.",
+    },
+    general: {
+      title: "Vous ne trouvez pas votre poste ?",
+      body: "Écrivez-nous à {email} et dites-nous comment vous pourriez aider. Nous lisons chaque candidature.",
+    },
+    labels: {
       department: "Département",
+      location: "Lieu",
       employmentType: "Type de contrat",
       workMode: "Mode de travail",
-      location: "Lieu",
+      posted: "Publié le",
     },
-    empty: {
-      message:
-        "Nous n’avons pas de poste ouvert pour le moment, mais nous sommes toujours intéressés par les personnes talentueuses.",
-      applyCta: "Envoyer une candidature spontanée",
-    },
-    apply: {
-      viaUrl: "Postuler à ce poste",
-      viaEmail: "Postuler par e-mail",
-      unavailable: "Les candidatures ne sont pas encore ouvertes pour ce poste.",
-      opensInNewTab: "(s’ouvre dans un nouvel onglet)",
+    values: {
+      department: {
+        sales: "Ventes",
+        marketing: "Marketing",
+      },
+      location: {
+        remote: "À distance",
+      },
+      employmentType: {
+        "full-time-or-part-time": "Temps plein ou temps partiel",
+      },
+      workMode: {
+        remote: "À distance",
+      },
     },
     details: {
+      back: "Carrières",
       overview: "Présentation",
       responsibilities: "Responsabilités",
-      requirements: "Profil recherché",
+      requirements: "Ce que nous recherchons",
       niceToHave: "Atouts",
-      compensation: "Rémunération",
-      benefits: "Avantages",
       howToApply: "Comment postuler",
-      backToCareers: "Retour aux carrières",
+      summary: "Résumé du poste",
+      apply: "Postuler par e-mail",
+      emailLabel: "Ou écrivez à",
+    },
+    application: {
+      subject: "Candidature : {title}",
+      body: "Bonjour l’équipe Revosso,\n\nJe souhaite postuler au poste de {title}.\n\nNom :\nLien vers mon profil ou mon CV :\nPourquoi ce poste :\n\nMerci,",
     },
     notFound: {
       title: "Poste introuvable",
-      message: "Cette offre n’est plus disponible ou le lien est incorrect.",
+      message: "Ce poste n’est plus ouvert, ou le lien est incorrect.",
       back: "Voir les postes ouverts",
     },
-  },
-  homeCareers: {
-    title: "Construire avec Revosso",
-    subtitle:
-      "Rejoignez-nous pour concevoir des produits qui répondent à de vrais besoins pour les entreprises et les communautés.",
-    cta: "Voir les carrières",
   },
 } satisfies LandingLocaleMessages

@@ -2,18 +2,12 @@ import { landingEn } from "@/lib/landing-translations/en"
 import { landingEs } from "@/lib/landing-translations/es"
 import { landingFr } from "@/lib/landing-translations/fr"
 import { landingPtBR } from "@/lib/landing-translations/pt-br"
+import type { LandingLocale } from "@/lib/landing-locale"
+import type { LandingLocaleMessages } from "@/lib/landing-translations/types"
 
-export const translations = {
+export const translations: Record<LandingLocale, LandingLocaleMessages> = {
   en: landingEn,
   fr: landingFr,
   "pt-BR": landingPtBR,
   es: landingEs,
-} as const
-
-export const clients = [
-  { name: "Cashlakay", url: "https://cashlakay.com", description: "Custom platform development" },
-  { name: "Revofin", url: "https://revofin.app/", description: "Financial platform hosting" },
-  { name: "Rechajem", url: "https://rechajem.com", description: "Platform development" },
-  { name: "RevoMaket", url: "https://revomaket.com/", description: "MarketPlace Platform" },
-  { name: "RevoCom", url: "https://revokonek.com", description: "Communication platform" },
-]
+}

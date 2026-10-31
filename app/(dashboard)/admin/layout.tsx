@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { AdminShell } from "./admin-shell"
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard | Revosso",
+  title: { absolute: "Admin Dashboard | Revosso" },
   description: "Lead management and admin dashboard for Revosso.",
 }
 
