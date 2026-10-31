@@ -45,8 +45,8 @@ export const landingEn = {
     back: "Back",
   },
   hero: {
-    eyebrow: "Digital agency and software company",
-    title: "A digital agency that builds software, and runs its own.",
+    eyebrow: "Software company",
+    title: "A software company that builds for clients, and runs its own.",
     subtitle:
       "We design, build and operate software for clients. We also run our own products: Revofin, RevoMaket, Rechajem and Revokonek. We know what it takes to keep software working after launch.",
     primaryCta: "Book a free 30-min call",
@@ -56,7 +56,7 @@ export const landingEn = {
   about: {
     eyebrow: "About",
     title: "Who is Revosso",
-    body: "Revosso is a technology company. We work with businesses as a digital agency, building websites, web platforms and software, and we operate our own products. Running them every day shapes how we build for clients.",
+    body: "Revosso is a software company. We build websites, web platforms and custom software for businesses, and we operate our own products. Running them every day shapes how we build for clients.",
     clientsTitle: "We build for clients",
     clientsBody:
       "Websites, web platforms, mobile apps and integrations, designed and built for your business, then hosted and maintained if you want us to.",
@@ -276,7 +276,7 @@ export const landingEn = {
     },
   },
   footer: {
-    tagline: "A digital agency and software company. We build for clients and run our own products.",
+    tagline: "A software company. We build for clients and run our own products.",
     servicesTitle: "Services",
     companyTitle: "Company",
     legalTitle: "Legal",
@@ -332,12 +332,12 @@ export const landingEn = {
   },
   aboutPage: {
     eyebrow: "About",
-    title: "A digital agency that also runs its own products",
+    title: "A software company that also runs its own products",
     intro:
-      "Revosso is a technology company. We build software for clients, and we build and operate our own products.",
+      "Revosso is a software company. We build for clients, and we build and operate our own products.",
     storyTitle: "Two sides of one company",
     story: [
-      "As a digital agency, we design and build websites, web platforms, mobile apps and integrations for businesses, and we can host and maintain them after launch.",
+      "For clients, we design and build websites, web platforms, mobile apps and integrations, and we can host and maintain them after launch.",
       "We also run four products of our own: Revofin, RevoMaket, Rechajem and Revokonek. We are responsible for them every day, from the first design to the servers they run on.",
     ],
     sidesTitle: "How the two sides feed each other",
@@ -362,13 +362,13 @@ export const landingEn = {
     seo: {
       title: "About",
       description:
-        "Revosso is a digital agency and software company. We build software for clients and run our own products.",
+        "Revosso is a software company. We build for clients and run our own products.",
     },
   },
   careers: {
     seo: {
       title: "Careers",
-      description: "Open roles at Revosso, a digital agency and software company. Remote, full-time or part-time.",
+      description: "Open roles at Revosso, a software company. Remote, full-time or part-time.",
     },
     eyebrow: "Careers",
     title: "Build software with Revosso",

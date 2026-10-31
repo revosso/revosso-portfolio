@@ -44,8 +44,8 @@ export const landingPtBR = {
     back: "Voltar",
   },
   hero: {
-    eyebrow: "Agência digital e empresa de software",
-    title: "Uma agência digital que constrói software, e opera o próprio.",
+    eyebrow: "Empresa de software",
+    title: "Uma empresa de software que constrói para clientes, e opera os próprios produtos.",
     subtitle:
       "Desenhamos, construímos e operamos software para clientes. Também operamos nossos próprios produtos: Revofin, RevoMaket, Rechajem e Revokonek. Sabemos o que é preciso para manter um software funcionando depois do lançamento.",
     primaryCta: "Agende uma conversa grátis de 30\u00a0min",
@@ -55,7 +55,7 @@ export const landingPtBR = {
   about: {
     eyebrow: "Sobre",
     title: "Quem é a Revosso",
-    body: "A Revosso é uma empresa de tecnologia. Trabalhamos com empresas como agência digital, construindo sites, plataformas web e software, e operamos nossos próprios produtos. Operá-los todos os dias molda a forma como construímos para os clientes.",
+    body: "A Revosso é uma empresa de software. Construímos sites, plataformas web e software sob medida para empresas, e operamos nossos próprios produtos. Operá-los todos os dias molda a forma como construímos para os clientes.",
     clientsTitle: "Construímos para clientes",
     clientsBody:
       "Sites, plataformas web, apps e integrações, desenhados e construídos para a sua empresa, e depois hospedados e mantidos se você quiser.",
@@ -282,7 +282,7 @@ export const landingPtBR = {
     },
   },
   footer: {
-    tagline: "Agência digital e empresa de software. Construímos para clientes e operamos nossos próprios produtos.",
+    tagline: "Empresa de software. Construímos para clientes e operamos nossos próprios produtos.",
     servicesTitle: "Serviços",
     companyTitle: "Empresa",
     legalTitle: "Jurídico",
@@ -338,12 +338,12 @@ export const landingPtBR = {
   },
   aboutPage: {
     eyebrow: "Sobre",
-    title: "Uma agência digital que também opera seus próprios produtos",
+    title: "Uma empresa de software que também opera seus próprios produtos",
     intro:
-      "A Revosso é uma empresa de tecnologia. Construímos software para clientes, e construímos e operamos nossos próprios produtos.",
+      "A Revosso é uma empresa de software. Construímos para clientes, e construímos e operamos nossos próprios produtos.",
     storyTitle: "Dois lados de uma mesma empresa",
     story: [
-      "Como agência digital, desenhamos e construímos sites, plataformas web, apps e integrações para empresas, e podemos hospedá-los e mantê-los depois do lançamento.",
+      "Para clientes, desenhamos e construímos sites, plataformas web, apps e integrações, e podemos hospedá-los e mantê-los depois do lançamento.",
       "Também operamos quatro produtos nossos: Revofin, RevoMaket, Rechajem e Revokonek. Somos responsáveis por eles todos os dias, do primeiro desenho aos servidores onde rodam.",
     ],
     sidesTitle: "Como os dois lados se alimentam",
@@ -368,13 +368,13 @@ export const landingPtBR = {
     seo: {
       title: "Sobre",
       description:
-        "A Revosso é uma agência digital e empresa de software. Construímos software para clientes e operamos nossos próprios produtos.",
+        "A Revosso é uma empresa de software. Construímos para clientes e operamos nossos próprios produtos.",
     },
   },
   careers: {
     seo: {
       title: "Carreiras",
-      description: "Vagas abertas na Revosso, agência digital e empresa de software. Remoto, tempo integral ou parcial.",
+      description: "Vagas abertas na Revosso, empresa de software. Remoto, tempo integral ou parcial.",
     },
     eyebrow: "Carreiras",
     title: "Construa software com a Revosso",

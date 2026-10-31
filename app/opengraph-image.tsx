@@ -53,10 +53,10 @@ export default function OpenGraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 20, color: COLORS.muted, fontWeight: 500, letterSpacing: 2, textTransform: "uppercase" }}>
-            Digital agency and software company
+            Software company
           </div>
           <div style={{ fontSize: 62, fontWeight: 600, lineHeight: 1.08, letterSpacing: -2, maxWidth: 980 }}>
-            A digital agency that builds software, and runs its own.
+            A software company that builds for clients, and runs its own.
           </div>
         </div>
 

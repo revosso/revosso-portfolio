@@ -44,8 +44,8 @@ export const landingFr = {
     back: "Retour",
   },
   hero: {
-    eyebrow: "Agence digitale et éditeur de logiciels",
-    title: "Une agence digitale qui construit des logiciels, et exploite les siens.",
+    eyebrow: "Entreprise de logiciels",
+    title: "Une entreprise de logiciels qui construit pour ses clients, et exploite ses propres produits.",
     subtitle:
       "Nous concevons, construisons et exploitons des logiciels pour nos clients. Nous exploitons aussi nos propres produits : Revofin, RevoMaket, Rechajem et Revokonek. Nous savons ce qu’il faut pour qu’un logiciel continue de fonctionner après son lancement.",
     primaryCta: "Réserver un appel gratuit de 30\u00a0min",
@@ -55,7 +55,7 @@ export const landingFr = {
   about: {
     eyebrow: "À propos",
     title: "Qui est Revosso",
-    body: "Revosso est une entreprise technologique. Nous travaillons avec les entreprises comme agence digitale, en construisant des sites web, des plateformes web et des logiciels, et nous exploitons nos propres produits. Les faire tourner chaque jour façonne notre manière de construire pour nos clients.",
+    body: "Revosso est une entreprise de logiciels. Nous construisons des sites web, des plateformes web et des logiciels sur mesure pour les entreprises, et nous exploitons nos propres produits. Les faire tourner chaque jour façonne notre manière de construire pour nos clients.",
     clientsTitle: "Nous construisons pour nos clients",
     clientsBody:
       "Sites web, plateformes web, applications mobiles et intégrations, conçus et construits pour votre entreprise, puis hébergés et maintenus si vous le souhaitez.",
@@ -285,7 +285,7 @@ export const landingFr = {
     },
   },
   footer: {
-    tagline: "Agence digitale et éditeur de logiciels. Nous construisons pour nos clients et exploitons nos propres produits.",
+    tagline: "Entreprise de logiciels. Nous construisons pour nos clients et exploitons nos propres produits.",
     servicesTitle: "Services",
     companyTitle: "Entreprise",
     legalTitle: "Mentions légales",
@@ -341,12 +341,12 @@ export const landingFr = {
   },
   aboutPage: {
     eyebrow: "À propos",
-    title: "Une agence digitale qui exploite aussi ses propres produits",
+    title: "Une entreprise de logiciels qui exploite aussi ses propres produits",
     intro:
-      "Revosso est une entreprise technologique. Nous construisons des logiciels pour nos clients, et nous construisons et exploitons nos propres produits.",
+      "Revosso est une entreprise de logiciels. Nous construisons pour nos clients, et nous construisons et exploitons nos propres produits.",
     storyTitle: "Deux facettes d’une même entreprise",
     story: [
-      "Comme agence digitale, nous concevons et construisons des sites web, des plateformes web, des applications mobiles et des intégrations pour les entreprises, et nous pouvons les héberger et les maintenir après le lancement.",
+      "Pour nos clients, nous concevons et construisons des sites web, des plateformes web, des applications mobiles et des intégrations, et nous pouvons les héberger et les maintenir après le lancement.",
       "Nous exploitons aussi quatre produits à nous : Revofin, RevoMaket, Rechajem et Revokonek. Nous en sommes responsables chaque jour, de la première maquette aux serveurs qui les font tourner.",
     ],
     sidesTitle: "Comment les deux facettes se nourrissent",
@@ -371,13 +371,13 @@ export const landingFr = {
     seo: {
       title: "À propos",
       description:
-        "Revosso est une agence digitale et un éditeur de logiciels. Nous construisons des logiciels pour nos clients et exploitons nos propres produits.",
+        "Revosso est une entreprise de logiciels. Nous construisons pour nos clients et exploitons nos propres produits.",
     },
   },
   careers: {
     seo: {
       title: "Carrières",
-      description: "Postes ouverts chez Revosso, agence digitale et éditeur de logiciels. À distance, temps plein ou partiel.",
+      description: "Postes ouverts chez Revosso, entreprise de logiciels. À distance, temps plein ou partiel.",
     },
     eyebrow: "Carrières",
     title: "Construisez des logiciels avec Revosso",
